@@ -1,119 +1,71 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * erro createStackNavigation ou reactNavigationStart: reactnavigation.org/docs/en/getting-started.html
+ * erro resolvido: github.com/kmagiera/react-native-gesture-handler/issues/676, user dangtienngoc, youtube video, nao linkava imports
+ * esconder navegation bar: aboutreact.com/react-native-hide-navigation-bar-and-make-screen-full-screen/
+ * dois tipos de navegacao no mesmo app: https://stackoverflow.com/questions/49169996/react-native-combine-2-navigation-type-in-single-apps
  *
  * @format
  * @flow
  */
 
 import React, {Component} from 'react';
-import {Alert, Text, StyleSheet, View, Image, TextInput, TouchableOpacity} from 'react-native'
+import { createAppContainer} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+//import Animated from 'react-native-reanimated';
+import {Login, MenuPrincipal, SelecaoRecurso} from '../screens';
+
+const AppNavigator = createStackNavigator(
+    {
+     Login: {
+        screen: Login,
+          navigationOptions:{
+            header:null,
+          },
+      },
+      MenuPrincipal: {
+        screen: MenuPrincipal
+      }
+    },
+
+    {
+      initialRouteName: 'Login'
+    }
+);
+
+ const TabNavigator = createBottomTabNavigator(
+
+     {
+         Login:{
+             screen: Login,
+             navigationOptions:{
+                 tabBarVisible:false
+             }
+         },
+
+         MenuPrincipal: MenuPrincipal,
+
+         SelecaoRecurso: SelecaoRecurso
+         //Rotas: AppNavigator
+     },
+
+ );
+
+ const rootNavigation = createStackNavigator({
+     AppNavigator: {screen: AppNavigator},
+     TabNavigator: {screen: TabNavigator},
+ });
+
+const AppContainer = createAppContainer(TabNavigator, rootNavigation, AppNavigator);
 
 export default class App extends Component {
 
-  clicou = () => {
-    Alert.alert("Em desenvolvimento", "A ser implementado")
-  };
-
-  render() {
-    return (
-
-        <View style={styles.content}>
-
-        <View style={styles.container}>
-
-          <Image
-              source={require('../assets/logo.png')}
-              style={styles.logo}
-          />
-
-          <TextInput
-              style={styles.input}
-              placeholder="Digite seu CPF"
-          />
-
-          <TextInput
-              style={styles.input}
-              secureTextEntry={true}
-              placeholder="Digite sua senha"
-          />
-
-          <TouchableOpacity
-              style={styles.botao}
-              onPress={() => {
-                this.clicou()
-              }}
-          >
-            <Text style={styles.botaoText}>Login</Text>
-          </TouchableOpacity>
-
-        </View>
-
-        </View>
-
-
-    )
+  render(){
+    return <AppContainer/>
   }
 }
 
-const styles = StyleSheet.create({
 
-  content:{
-    flex:1,
-    flexDirection:'row',
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:'blue'
-  },
-
-  container: {
-    //flex: 1,
-    //flexDirection:'column',
-    //justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#3386ff',
-    width:370,
-    paddingTop:50,
-    paddingBottom:50,
-    paddingLeft:20,
-    paddingRight: 20,
-    borderRadius:10
-
-  },
-
-  logo: {
-    width: 150,
-    height: 150,
-    paddingTop:50,
-    borderRadius: 100,
-  },
-
-  input: {
-    padding: 10,
-    marginTop: 10,
-    width: 300,
-    backgroundColor: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-    borderRadius: 3
-  },
-
-  botao: {
-    width: 300,
-    height: 42,
-    backgroundColor: '#335eff',
-    marginTop: 10,
-    borderRadius: 4,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-  botaoText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff'
-  }
-
-});
+//export default Login
 
 
