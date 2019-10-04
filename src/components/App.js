@@ -3,6 +3,8 @@
  * erro resolvido: github.com/kmagiera/react-native-gesture-handler/issues/676, user dangtienngoc, youtube video, nao linkava imports
  * esconder navegation bar: aboutreact.com/react-native-hide-navigation-bar-and-make-screen-full-screen/
  * dois tipos de navegacao no mesmo app: https://stackoverflow.com/questions/49169996/react-native-combine-2-navigation-type-in-single-apps
+ * https://reactnavigation.org/docs/en/tab-based-navigation.html
+ * https://snack.expo.io/@react-navigation/stacks-in-tabs-v3
  *
  * @format
  * @flow
@@ -13,50 +15,109 @@ import { createAppContainer} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 //import Animated from 'react-native-reanimated';
-import {Login, MenuPrincipal, SelecaoRecurso} from '../screens';
+import {Login, MenuPrincipal, Emissoes, ExibirQRCode, SelecaoFundoPublico,SelecaoTipoBem, CadastroBem, Consultas, ExibirResultadoConsulta} from '../screens';
+import {create} from "react-native/jest/renderer";
 
-const AppNavigator = createStackNavigator(
+const LoginStack = createStackNavigator(
     {
-     Login: {
-        screen: Login,
-          navigationOptions:{
-            header:null,
-          },
-      },
-      MenuPrincipal: {
-        screen: MenuPrincipal
-      }
-    },
-
-    {
-      initialRouteName: 'Login'
+        Login: {
+            screen: Login,
+            navigationOptions:{
+                header:null,
+            },
+        },
     }
 );
+
+const HomeStack= createStackNavigator(
+
+    {
+
+        MenuPrincipal: {
+            screen: MenuPrincipal
+        }
+    },
+);
+
+const CadastrosStack = createStackNavigator(
+
+    {
+        SelecaoFundoPublico:{
+            screen: SelecaoFundoPublico
+        },
+
+        SelecaoTipoBem:{
+            screen: SelecaoTipoBem
+        },
+
+        CadastroBem:{
+            screen: CadastroBem
+        },
+    }
+);
+
+const ConsultasStack = createStackNavigator(
+
+    {
+        Consultas:{
+            screen: Consultas
+        },
+
+        ExibirResultadoConsulta:{
+            screen: ExibirResultadoConsulta
+        },
+
+    }
+);
+
+const EmissoesStack = createStackNavigator(
+
+    {
+        EMISSAO: {
+            screen: Emissoes,
+            navigationOptions:{
+                //header:null,
+            },
+
+        },
+
+        ExibirQRCode:{
+            screen:ExibirQRCode
+        },
+
+    }
+);
+
 
  const TabNavigator = createBottomTabNavigator(
 
      {
-         Login:{
-             screen: Login,
-             navigationOptions:{
-                 tabBarVisible:false
+
+         LOGIN: {
+             screen: LoginStack,
+             navigationOptions: {
+                 tabBarVisible: false
              }
+
          },
 
-         MenuPrincipal: MenuPrincipal,
+         HOME: {
+             screen: HomeStack,
+             navigationOptions:{
+                tabBarVisible:true
+         }},
 
-         SelecaoRecurso: SelecaoRecurso
-         //Rotas: AppNavigator
+         CADASTROS: {screen: CadastrosStack},
+
+         CONSULTAS: {screen: ConsultasStack},
+
+         EMISSOES: {screen: EmissoesStack},
      },
-
  );
 
- const rootNavigation = createStackNavigator({
-     AppNavigator: {screen: AppNavigator},
-     TabNavigator: {screen: TabNavigator},
- });
 
-const AppContainer = createAppContainer(TabNavigator, rootNavigation, AppNavigator);
+
+const AppContainer = createAppContainer(TabNavigator);
 
 export default class App extends Component {
 

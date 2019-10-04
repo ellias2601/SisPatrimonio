@@ -1,14 +1,26 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
 
-export default class SelecaoRecurso extends Component {
+export default class Emissoes extends Component {
+
+    static navigationOptions = {
+        title: 'Emitir QR Code',
+        headerStyle:{
+            backgroundColor: '#f4511e'
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold'
+        }
+
+    };
 
     render () {
         return(
             <View style={{flex:1, justifyContent: 'center', margin: 50}}>
 
                 <View style={{alignItems: 'center'}}>
-                    <Text style={{fontSize: 50}}>Selecao de Recursos</Text>
+                    <Text style={{fontSize: 50}}>Emissoes QR Code</Text>
                 </View>
 
                 <View Style={{margin:20}}>
@@ -17,7 +29,7 @@ export default class SelecaoRecurso extends Component {
                         style={styles.botao}
                         onPress={() => {
                             //this.clicou()
-                            this.props.navigation.goBack()
+                            this.props.navigation.navigate('ExibirQRCode')
                         }}
                     >
                         <Text style={styles.botaoText}>ACESSAR</Text>
