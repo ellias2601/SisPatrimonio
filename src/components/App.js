@@ -5,6 +5,8 @@
  * dois tipos de navegacao no mesmo app: https://stackoverflow.com/questions/49169996/react-native-combine-2-navigation-type-in-single-apps
  * https://reactnavigation.org/docs/en/tab-based-navigation.html
  * https://snack.expo.io/@react-navigation/stacks-in-tabs-v3
+ * icones: oblador.gitgub.io/react-native-vector-icons/ MaterialDesign, FontAwesome, AntDesign...
+ * ideia para alocacoes layout: github.com/react-navigation/react-navigation/issues/253
  *
  * @format
  * @flow
@@ -17,6 +19,8 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 //import Animated from 'react-native-reanimated';
 import {Login, MenuPrincipal, Emissoes, ExibirQRCode, SelecaoFundoPublico,SelecaoTipoBem, CadastroBem, Consultas, ExibirResultadoConsulta} from '../screens';
 import {create} from "react-native/jest/renderer";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const LoginStack = createStackNavigator(
     {
@@ -37,6 +41,9 @@ const HomeStack= createStackNavigator(
             screen: MenuPrincipal
         }
     },
+    {
+        headerLayoutPreset: "center"
+    }
 );
 
 const CadastrosStack = createStackNavigator(
@@ -96,7 +103,10 @@ const EmissoesStack = createStackNavigator(
          LOGIN: {
              screen: LoginStack,
              navigationOptions: {
-                 tabBarVisible: false
+                 tabBarVisible: false,
+                 tabBarIcon: ({tintColor}) =>(
+                     <Ionicons name={"md-remove"} size={30}/>
+                 )
              }
 
          },
@@ -104,18 +114,61 @@ const EmissoesStack = createStackNavigator(
          HOME: {
              screen: HomeStack,
              navigationOptions:{
-                tabBarVisible:true
-         }},
+                tabBarVisible:true,
+                 tabBarIcon: ({tintColor}) =>(
+                     <Ionicons name={"md-home"} size={30}/>
+                 )
+             }
+         },
 
-         CADASTROS: {screen: CadastrosStack},
+         CADASTROS: {
+             screen: CadastrosStack,
+             navigationOptions:{
+                 tabBarVisible:true,
+                 tabBarIcon: ({tintColor}) =>(
+                     <Ionicons name={"md-save"} size={30}/>
+                 )
+             }
+         },
 
-         CONSULTAS: {screen: ConsultasStack},
+         CONSULTAS: {
+             screen: ConsultasStack,
+             navigationOptions:{
+                 tabBarVisible:true,
+                 tabBarIcon: ({tintColor}) =>(
+                     <Ionicons name={"md-search"} size={30}/>
+                 )
+             }
 
-         EMISSOES: {screen: EmissoesStack},
+         },
+
+         EMISSÕES: {
+             screen: EmissoesStack,
+             navigationOptions:{
+                 tabBarVisible:true,
+                 tabBarIcon: ({tintColor}) =>(
+                     <Ionicons name={"md-barcode"} size={30}/>
+                 )
+             }
+          },
      },
+
+     {
+
+        tabBarOptions: {
+
+            activeTintColor: '#fff',
+            inactiveTintColor: '#000',
+            showIcon: true,
+
+            style: {
+             backgroundColor: '#b1d9e7'
+            },
+        },
+
+     },
+
  );
-
-
 
 const AppContainer = createAppContainer(TabNavigator);
 

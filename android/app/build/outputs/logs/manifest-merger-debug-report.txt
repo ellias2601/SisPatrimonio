@@ -7,6 +7,7 @@ INJECTED from /home/ellias/WebstormProjects/SisPatr/android/app/src/main/Android
 MERGED from /home/ellias/WebstormProjects/SisPatr/android/app/src/main/AndroidManifest.xml:1:1-26:12
 MERGED from [:react-native-reanimated] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-gesture-handler] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
+MERGED from [:react-native-vector-icons] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.61.2] /root/.gradle/caches/transforms-2/files-2.1/808ab48851e24dcde0457b267d2f489f/AndroidManifest.xml:2:1-13:12
 MERGED from [androidx.appcompat:appcompat:1.1.0-rc01] /root/.gradle/caches/transforms-2/files-2.1/53a1f4bcd09b137c106a1e04657d6a00/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02] /root/.gradle/caches/transforms-2/files-2.1/06d9f1d9f49f2947c725102f5c482446/AndroidManifest.xml:17:1-24:12
@@ -134,6 +135,8 @@ MERGED from [:react-native-reanimated] /home/ellias/WebstormProjects/SisPatr/nod
 MERGED from [:react-native-reanimated] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-reanimated/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-gesture-handler/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
+MERGED from [:react-native-vector-icons] /home/ellias/WebstormProjects/SisPatr/node_modules/react-native-vector-icons/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.2] /root/.gradle/caches/transforms-2/files-2.1/808ab48851e24dcde0457b267d2f489f/AndroidManifest.xml:7:5-9:41
 MERGED from [com.facebook.react:react-native:0.61.2] /root/.gradle/caches/transforms-2/files-2.1/808ab48851e24dcde0457b267d2f489f/AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.1.0-rc01] /root/.gradle/caches/transforms-2/files-2.1/53a1f4bcd09b137c106a1e04657d6a00/AndroidManifest.xml:20:5-22:41

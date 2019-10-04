@@ -1,40 +1,38 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Image} from "react-native";
 
 export default class MenuPrincipal extends Component {
 
     static navigationOptions = {
+
         title: 'Menu Principal',
-        headerStyle:{
-            backgroundColor: '#f4511e'
-        },
-        headerTintColor: '#fff',
         headerTitleStyle: {
-            fontWeight: 'bold'
-        }
+
+        },
+
+        headerStyle:{
+            backgroundColor: '#b1d9e7'
+        },
+        headerTintColor: 'black',
 
     };
 
     render () {
         return(
-            <View style={{flex:1, justifyContent: 'center', margin: 50}}>
+            <View style={styles.container}>
 
-                <View style={{alignItems: 'center'}}>
-                    <Text style={{fontSize: 50}}>Tela de Menu Principal</Text>
-                </View>
+                <Text
+                    style={styles.textoBemVindo}>Bem-vindo ao SisPatrimônio, Ellias!
+                </Text>
 
-                <View Style={{margin:20}}>
+                <Text
+                    style={styles.textoInteracao}>O que deseja fazer hoje?
+                </Text>
 
-                    <TouchableOpacity
-                        style={styles.botao}
-                        onPress={() => {
-                            //this.clicou()
-                            this.props.navigation.goBack()
-                        }}
-                    >
-                        <Text style={styles.botaoText}>ACESSAR</Text>
-                    </TouchableOpacity>
-                </View>
+                <Image
+                    source={require('../assets/menuPersona.jpg')}
+                    style={styles.imagemMenu}
+                />
 
             </View>
         );
@@ -44,61 +42,35 @@ export default class MenuPrincipal extends Component {
 
 const styles = StyleSheet.create({
 
-    content:{
+    container: {
+
         flex:1,
-        flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#b1d9e7'
-    },
-
-    container: {
-        //flex: 1,
-        //flexDirection:'column',
-        //justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#8cc6df',
-        width:370,
-        paddingTop:50,
-        paddingBottom:50,
-        paddingLeft:20,
-        paddingRight: 20,
-        borderRadius:10
+        backgroundColor:'#fff'
 
     },
 
-    logo: {
-        width: 150,
-        height: 150,
-        paddingTop:50,
-        // borderRadius: 100,
+    textoBemVindo:{
+
+        marginTop: 5,
+        height :60,
+        fontSize: 20,
+
     },
 
-    input: {
-        padding: 10,
-        marginTop: 10,
-        width: 300,
-        backgroundColor: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-        borderRadius: 3
+    textoInteracao:{
+
+        height :70,
+        fontSize: 20,
+
     },
 
-    botao: {
-        width: 300,
-        height: 42,
-        backgroundColor: '#b1d9e7',
-        marginTop: 25,
-        borderRadius: 4,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
+    imagemMenu: {
+        width: 200,
+        height: 250,
 
-    botaoText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#545454'
-    }
+    },
 
 });
 
