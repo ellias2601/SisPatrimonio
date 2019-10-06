@@ -60,6 +60,10 @@ const CadastrosStack = createStackNavigator(
         CadastroBem:{
             screen: CadastroBem
         },
+    },
+
+    {
+        headerLayoutPreset: "center"
     }
 );
 
@@ -92,7 +96,12 @@ const EmissoesStack = createStackNavigator(
             screen:ExibirQRCode
         },
 
+    },
+
+    {
+        headerLayoutPreset: "center"
     }
+
 );
 
 
