@@ -11,8 +11,6 @@ export default class Emissões extends Component {
             PickerValue2:'',
             PickerValue3: ''
         }
-
-
     };
 
     static navigationOptions = {
@@ -21,7 +19,6 @@ export default class Emissões extends Component {
         headerTitleStyle: {
 
         },
-
         headerStyle:{
             backgroundColor: '#b1d9e7'
         },
@@ -30,6 +27,7 @@ export default class Emissões extends Component {
     };
 
     clicou =() =>{
+
         var data1 = this.state.PickerValue1;
         var data2 = this.state.PickerValue2;
         var data3 = this.state.PickerValue3;
@@ -44,7 +42,7 @@ export default class Emissões extends Component {
             alert(data2);
             alert(data3);
         }
-    }
+    };
 
 
     render () {

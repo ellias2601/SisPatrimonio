@@ -1,40 +1,96 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, ScrollView} from "react-native";
 
-export default class ExibirResultadoConsulta extends Component {
+export default class ExibirResutadoConsulta extends Component {
 
     static navigationOptions = {
-        title: 'Resultado da Consulta',
-        headerStyle:{
-            backgroundColor: '#f4511e'
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold'
-        }
 
+        title: 'Identificação (Consulta)',
+        headerTitleStyle: {
+        },
+
+        headerStyle:{
+            backgroundColor: '#b1d9e7'
+        },
+        headerTintColor: 'black',
+    };
+
+    clicou =() =>{
+
+        this.props.navigation.navigate('Consultas')
     };
 
     render () {
         return(
-            <View style={{flex:1, justifyContent: 'center', margin: 50}}>
+            <View style={styles.container}>
 
-                <View style={{alignItems: 'center'}}>
-                    <Text style={{fontSize: 50}}>Resultado da Consulta</Text>
-                </View>
+                <ScrollView>
 
-                <View Style={{margin:20}}>
+                <Text
+                    style={styles.textoSubElemento}>SubElemento:
+                </Text>
 
-                    <TouchableOpacity
-                        style={styles.botao}
-                        onPress={() => {
-                            //this.clicou()
-                            this.props.navigation.navigate('Consultas')
-                        }}
-                    >
-                        <Text style={styles.botaoText}>CONTINUAR</Text>
-                    </TouchableOpacity>
-                </View>
+                <Text
+                    style={styles.dadosSubElemento}>22 - Móveis e Utensílios Domésticos
+                </Text>
+
+                <Text
+                    style={styles.textoDescricaoBem}>Descrição do Bem:
+                </Text>
+
+                <Text
+                    style={styles.dadosDescricaoBem}>Mesa Oval para Reunião
+                </Text>
+
+                <Text
+                    style={styles.textoClassificacaoBem}>Classificação:
+                </Text>
+
+                <Text
+                    style={styles.dadosClassificacaoBem}>Mesa
+                </Text>
+
+                <Text
+                    style={styles.textoValorDoBem}>Valor do Bem:
+                </Text>
+
+                <Text
+                    style={styles.dadosValorDoBem}>R$ 2000.00
+                </Text>
+
+                <Text
+                    style={styles.textoNumeroBem}>Número do Bem:
+                </Text>
+
+                <Text
+                    style={styles.dadosNumeroBem}>022324
+                </Text>
+
+                <Text
+                    style={styles.textoNumeroBemAnterior}>Número do Bem Anterior:
+                </Text>
+
+                <Text
+                    style={styles.dadosNumeroBemAnterior}>012234
+                </Text>
+
+                <Text
+                    style={styles.textoEstadoBem}>Estado do Bem:
+                </Text>
+
+                <Text
+                    style={styles.dadosEstadoBem}>1 - Ótimo
+                </Text>
+
+                <Text
+                    style={styles.textoResponsavelBem}>Responsável:
+                </Text>
+
+                <Text
+                    style={styles.dadosResponsavelBem}>22 - José da Silva
+                </Text>
+
+                </ScrollView>
 
             </View>
         );
@@ -44,60 +100,141 @@ export default class ExibirResultadoConsulta extends Component {
 
 const styles = StyleSheet.create({
 
-    content:{
-        flex:1,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-        backgroundColor:'#b1d9e7'
-    },
-
     container: {
-        //flex: 1,
-        //flexDirection:'column',
-        //justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#8cc6df',
-        width:370,
-        paddingTop:50,
-        paddingBottom:50,
-        paddingLeft:20,
-        paddingRight: 20,
-        borderRadius:10
+
+        flex:1,
+       // justifyContent:'space-between',
+        backgroundColor:'#fff'
 
     },
 
-    logo: {
-        width: 150,
-        height: 150,
-        paddingTop:50,
-        // borderRadius: 100,
-    },
+    textoSubElemento:{
 
-    input: {
-        padding: 10,
-        marginTop: 10,
-        width: 300,
-        backgroundColor: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-        borderRadius: 3
-    },
-
-    botao: {
-        width: 300,
-        height: 42,
-        backgroundColor: '#b1d9e7',
         marginTop: 25,
-        borderRadius: 4,
-        alignItems: 'center',
-        justifyContent: 'center'
+        marginLeft: 30,
+        fontSize: 18,
+
     },
 
-    botaoText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#545454'
-    }
+    dadosSubElemento:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoDescricaoBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosDescricaoBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoClassificacaoBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosClassificacaoBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoValorDoBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosValorDoBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoNumeroBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosNumeroBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoNumeroBemAnterior:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosNumeroBemAnterior:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoEstadoBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosEstadoBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    textoResponsavelBem:{
+
+        marginTop: 30,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
+
+    dadosResponsavelBem:{
+
+        marginTop: 0,
+        marginLeft: 30,
+        fontSize: 18,
+
+    },
 
 });
+

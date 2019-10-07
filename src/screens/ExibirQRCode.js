@@ -1,40 +1,42 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Image} from "react-native";
 
-export default class ExibirQRCode extends Component {
+export default class ExibirQrCode extends Component {
 
     static navigationOptions = {
-        title: 'Emitir QR Code',
-        headerStyle:{
-            backgroundColor: '#f4511e'
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold'
-        }
 
+        title: 'Emitir QR Code',
+        headerTitleStyle: {
+        },
+
+        headerStyle:{
+            backgroundColor: '#b1d9e7'
+        },
+        headerTintColor: 'black',
     };
 
     render () {
         return(
-            <View style={{flex:1, justifyContent: 'center', margin: 50}}>
+            <View style={styles.container}>
 
-                <View style={{alignItems: 'center'}}>
-                    <Text style={{fontSize: 50}}>QR Code Emitido Com Sucesso!</Text>
-                </View>
+                <Text
+                    style={styles.textoFeedback}>QR Code emitido com sucesso para os bens relativos ao subdestino selecionado!
+                </Text>
 
-                <View Style={{margin:20}}>
+                <Image
+                    source={require('../assets/frame.png')}
+                    style={styles.qrCode}
+                />
 
-                    <TouchableOpacity
-                        style={styles.botao}
-                        onPress={() => {
-                            //this.clicou()
-                            this.props.navigation.goBack()
-                        }}
-                    >
-                        <Text style={styles.botaoText}>ACESSAR</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                    style={styles.botao}
+                    onPress={() => {
+                        //this.clicou()
+                        this.props.navigation.goBack()
+                    }}
+                >
+                    <Text style={styles.botaoText}>COMPARTILHAR</Text>
+                </TouchableOpacity>
 
             </View>
         );
@@ -44,60 +46,46 @@ export default class ExibirQRCode extends Component {
 
 const styles = StyleSheet.create({
 
-    content:{
+    container: {
+
         flex:1,
-        flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#b1d9e7'
-    },
-
-    container: {
-        //flex: 1,
-        //flexDirection:'column',
-        //justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#8cc6df',
-        width:370,
-        paddingTop:50,
-        paddingBottom:50,
-        paddingLeft:20,
-        paddingRight: 20,
-        borderRadius:10
+        backgroundColor:'#fff'
 
     },
 
-    logo: {
-        width: 150,
-        height: 150,
-        paddingTop:50,
-        // borderRadius: 100,
+    textoFeedback:{
+
+        marginTop: 5,
+        height :60,
+        fontSize: 20,
+        textAlign: 'center'
     },
 
-    input: {
-        padding: 10,
-        marginTop: 10,
-        width: 300,
-        backgroundColor: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-        borderRadius: 3
+    qrCode: {
+
+        width: 200,
+        height: 250,
     },
 
     botao: {
-        width: 300,
-        height: 42,
+
+        marginTop: 40,
+        width: 150,
+        height: 50,
         backgroundColor: '#b1d9e7',
-        marginTop: 25,
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     botaoText: {
+
         fontSize: 16,
         fontWeight: 'bold',
         color: '#545454'
     }
 
 });
+

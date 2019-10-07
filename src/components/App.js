@@ -77,7 +77,10 @@ const ConsultasStack = createStackNavigator(
         ExibirResultadoConsulta:{
             screen: ExibirResultadoConsulta
         },
+    },
 
+    {
+        headerLayoutPreset: "center"
     }
 );
 

@@ -1,40 +1,55 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Image, TextInput} from "react-native";
 
 export default class Consultas extends Component {
 
     static navigationOptions = {
-        title: 'Consulta por Bens',
-        headerStyle:{
-            backgroundColor: '#f4511e'
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-            fontWeight: 'bold'
-        }
 
+        title: 'Identificação (Consulta)',
+        headerTitleStyle: {
+        },
+
+        headerStyle:{
+            backgroundColor: '#b1d9e7'
+        },
+        headerTintColor: 'black',
+    };
+
+    clicou =() =>{
+
+            this.props.navigation.navigate('ExibirResultadoConsulta')
     };
 
     render () {
         return(
-            <View style={{flex:1, justifyContent: 'center', margin: 50}}>
+            <View style={styles.container}>
 
-                <View style={{alignItems: 'center'}}>
-                    <Text style={{fontSize: 50}}>Dados Para Consulta</Text>
+                <Text
+                    style={styles.textoNumeroBem}>Informe o número do bem para consulta
+                </Text>
+
+                <View style={styles.bordaInputNumeroBem}>
+
+                <TextInput
+                    style={styles.inputNumeroBem}
+                    placeholder="CPF"
+                />
+
                 </View>
 
-                <View Style={{margin:20}}>
+                <Text
+                    style={styles.textoOpcao}>ou
+                </Text>
 
-                    <TouchableOpacity
-                        style={styles.botao}
-                        onPress={() => {
-                            //this.clicou()
-                            this.props.navigation.navigate('ExibirResultadoConsulta')
-                        }}
-                    >
-                        <Text style={styles.botaoText}>CONTINUAR</Text>
-                    </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                    style={styles.botao}
+                    onPress={() => {
+                        this.clicou()
+
+                    }}
+                >
+                    <Text style={styles.botaoText}>Escaneie Código de Barras / QR Code</Text>
+                </TouchableOpacity>
 
             </View>
         );
@@ -44,60 +59,64 @@ export default class Consultas extends Component {
 
 const styles = StyleSheet.create({
 
-    content:{
+    container: {
+
         flex:1,
-        flexDirection:'row',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#b1d9e7'
-    },
-
-    container: {
-        //flex: 1,
-        //flexDirection:'column',
-        //justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#8cc6df',
-        width:370,
-        paddingTop:50,
-        paddingBottom:50,
-        paddingLeft:20,
-        paddingRight: 20,
-        borderRadius:10
+        backgroundColor:'#fff'
 
     },
 
-    logo: {
-        width: 150,
-        height: 150,
-        paddingTop:50,
-        // borderRadius: 100,
+    textoNumeroBem:{
+
+        marginTop: 30,
+        height :60,
+        fontSize: 20,
+        textAlign: 'center'
     },
 
-    input: {
-        padding: 10,
-        marginTop: 10,
-        width: 300,
-        backgroundColor: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
-        borderRadius: 3
+    bordaInputNumeroBem:{
+
+        marginTop: 20,
+        borderWidth: 1,
+        borderRadius: 8
+    },
+
+    inputNumeroBem: {
+
+        width: 290,
+        height: 50,
+        paddingTop: '10%',
+
+    },
+
+    textoOpcao:{
+
+        marginTop: 30,
+        height :60,
+        fontSize: 20,
+        textAlign: 'center'
     },
 
     botao: {
-        width: 300,
-        height: 42,
+
+        marginTop: 0,
+        width: 180,
+        height: 100,
         backgroundColor: '#b1d9e7',
-        marginTop: 25,
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     botaoText: {
+
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#545454'
+        color: '#545454',
+        textAlign: 'center'
     }
 
 });
+
