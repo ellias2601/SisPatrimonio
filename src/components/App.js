@@ -13,7 +13,7 @@
  */
 
 import React, {Component} from 'react';
-import { createAppContainer} from 'react-navigation';
+import { createAppContainer, createSwitchNavigator} from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 //import Animated from 'react-native-reanimated';
@@ -104,24 +104,12 @@ const EmissoesStack = createStackNavigator(
     {
         headerLayoutPreset: "center"
     }
-
 );
 
 
- const TabNavigator = createBottomTabNavigator(
+ const AppNavigator = createBottomTabNavigator(
 
      {
-
-         LOGIN: {
-             screen: LoginStack,
-             navigationOptions: {
-                 tabBarVisible: false,
-                 tabBarIcon: ({tintColor}) =>(
-                     <Ionicons name={"md-remove"} size={30}/>
-                 )
-             }
-
-         },
 
          HOME: {
              screen: HomeStack,
@@ -182,7 +170,22 @@ const EmissoesStack = createStackNavigator(
 
  );
 
-const AppContainer = createAppContainer(TabNavigator);
+ const AppNavegation = createSwitchNavigator(
+
+     {
+
+         initialStack: LoginStack,
+         appStack: AppNavigator
+     },
+
+     {
+
+         initialRouteName: "initialStack"
+     }
+
+ );
+
+const AppContainer = createAppContainer(AppNavegation);
 
 export default class App extends Component {
 

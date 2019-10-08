@@ -33,7 +33,7 @@ export default class SelecaoFundoPublico extends Component {
             } else{
 
                 this.props.navigation.navigate('SelecaoTipoBem')
-                alert(data);
+                //alert(data);
             }
     }
 

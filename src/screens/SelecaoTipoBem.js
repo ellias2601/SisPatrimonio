@@ -33,7 +33,7 @@ export default class SelecaoTipoBem extends Component {
         } else{
 
             this.props.navigation.navigate('CadastroBem')
-            alert(data);
+            //alert(data);
         }
     }
 

@@ -7,7 +7,7 @@ export default class Emissões extends Component {
         super();
 
         this.state={
-            PickerValue:'',
+            PickerValue1:'',
             PickerValue2:'',
             PickerValue3: ''
         }
@@ -33,14 +33,21 @@ export default class Emissões extends Component {
         var data3 = this.state.PickerValue3;
 
 
-        if(data1==""){
-            alert("Nenhuma Opção Foi Selecionada");
-        } else{
+        if(data1===""){
+            alert("Fundo Público Não Selecionado");
+        }
+            else if(data2===""){
+                alert("Destino Não Selecionado");
+        }
+                else if(data3===""){
+                    alert("SubDestino Não Selecionado")
+        }
+        else{
 
             this.props.navigation.navigate('ExibirQRCode')
-            alert(data1);
-            alert(data2);
-            alert(data3);
+            //alert(data1);
+            //alert(data2);
+            //alert(data3);
         }
     };
 
@@ -66,7 +73,6 @@ export default class Emissões extends Component {
                         <Picker.Item label="01 - FME - Fundo Municipal de Educação" value="1 - FME"/>
 
                     </Picker>
-
 
                 </View>
 
@@ -160,7 +166,7 @@ const styles = StyleSheet.create({
     pickerStyle:{
         width: 290,
         height: 50,
-        paddingTop: '10%',
+        paddingTop: '15%', //Altera tamanho do picker!!
         borderWidth: 1,
     },
 
