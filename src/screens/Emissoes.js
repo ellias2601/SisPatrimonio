@@ -57,8 +57,12 @@ export default class Emissões extends Component {
         return(
             <View style={styles.content}>
 
-                <Text style={styles.textoInstrucao}>
-                    Informe os dados para a emissão do QR Code Patrimonial
+                <Text style={styles.textoInstrucao1}>
+                    Informe os dados para a emissão
+                </Text>
+
+                <Text style={styles.textoInstrucao2}>
+                    do QR Code Patrimonial
                 </Text>
 
                 <View style={styles.pickerBorderFundo}>
@@ -132,15 +136,18 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:'#fff',
-
     },
 
-    textoInstrucao:{
-        //marginTop: 0,
-        height :100,
-        fontSize: 20,
-        textAlign: 'center'
+    textoInstrucao1:{
+        marginTop: 20,
+        height :80,
+        fontSize: 23,
+    },
 
+    textoInstrucao2:{
+        marginTop: -50,
+        height :80,
+        fontSize: 23,
     },
 
     pickerBorderFundo:{
@@ -166,14 +173,13 @@ const styles = StyleSheet.create({
     pickerStyle:{
         width: 290,
         height: 50,
-        paddingTop: '15%', //Altera tamanho do picker!!
+        paddingTop: '10%', //Altera tamanho do picker!!
         borderWidth: 1,
     },
 
-
     botao: {
 
-        marginTop: 50,
+        marginTop: 40,
         width: 150,
         height: 45,
         backgroundColor: '#b1d9e7',

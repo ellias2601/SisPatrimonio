@@ -26,7 +26,7 @@ export default class SelecaoFundoPublico extends Component {
     };
 
     clicou =() =>{
-        var data = this.state.PickerValue;
+        /*var data = this.state.PickerValue;
 
             if(data==""){
                 alert("Nenhuma Opção Foi Selecionada");
@@ -34,7 +34,9 @@ export default class SelecaoFundoPublico extends Component {
 
                 this.props.navigation.navigate('SelecaoTipoBem')
                 //alert(data);
-            }
+            }*/
+
+        this.props.navigation.navigate('SelecaoTipoBem')
     }
 
 
@@ -43,8 +45,12 @@ export default class SelecaoFundoPublico extends Component {
         return(
             <View style={styles.content}>
 
-                <Text style={styles.textoInstrucao}>
-                    Selecione o Fundo Público para Cadastro
+                <Text style={styles.textoInstrucao1}>
+                    Selecione o Fundo Público
+                </Text>
+
+                <Text style={styles.textoInstrucao2}>
+                    para Cadastro
                 </Text>
 
                     <View style={styles.pickerBorder}>
@@ -84,7 +90,7 @@ const styles = StyleSheet.create({
 
     content:{
 
-        marginTop: '-10%',
+        marginTop: '0%',
         flex:1,
         alignItems:'center',
         justifyContent:'center',
@@ -92,10 +98,16 @@ const styles = StyleSheet.create({
 
     },
 
-    textoInstrucao:{
+    textoInstrucao1:{
         marginTop: 0,
-        height :100,
-        fontSize: 20,
+        height :80,
+        fontSize: 23,
+    },
+
+    textoInstrucao2:{
+        marginTop: -50,
+        height :80,
+        fontSize: 23,
     },
 
     pickerBorder:{
@@ -107,7 +119,7 @@ const styles = StyleSheet.create({
     pickerStyle:{
         width: 290,
         height: 50,
-        paddingTop: '15%',
+        paddingTop: '10%',
         borderWidth: 1,
     },
 
@@ -115,7 +127,7 @@ const styles = StyleSheet.create({
 
         marginTop: 50,
         width: 150,
-        height: 45,
+        height: 50,
         backgroundColor: '#b1d9e7',
         borderRadius: 4,
         alignItems: 'center',

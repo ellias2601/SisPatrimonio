@@ -26,15 +26,19 @@ export default class SelecaoTipoBem extends Component {
     };
 
     clicou =() =>{
+
         var data = this.state.PickerValue;
 
-        if(data==""){
+        /*if(data==""){
             alert("Nenhuma Opção Foi Selecionada");
         } else{
 
             this.props.navigation.navigate('CadastroBem')
             //alert(data);
-        }
+        }*/
+
+        this.props.navigation.navigate('CadastroBem')
+
     }
 
 
@@ -43,8 +47,12 @@ export default class SelecaoTipoBem extends Component {
         return(
             <View style={styles.content}>
 
-                <Text style={styles.textoInstrucao}>
-                    Selecione o Tipo do Bem em Cadastro
+                <Text style={styles.textoInstrucao1}>
+                    Selecione o Tipo do Bem
+                </Text>
+
+                <Text style={styles.textoInstrucao2}>
+                    para Cadastro
                 </Text>
 
                 <View style={styles.pickerBorder}>
@@ -56,6 +64,7 @@ export default class SelecaoTipoBem extends Component {
                         borderColor
 
                     >
+
                         <Picker.Item label="Móveis" value="1 - Móveis"/>
                         <Picker.Item label="Imóveis" value="2 - Imóveis"/>
                         <Picker.Item label="Veículos" value="3 - Veículos"/>
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
 
     content:{
 
-        marginTop: '-10%',
+        marginTop: '0%',
         flex:1,
         alignItems:'center',
         justifyContent:'center',
@@ -92,10 +101,16 @@ const styles = StyleSheet.create({
 
     },
 
-    textoInstrucao:{
+    textoInstrucao1:{
         marginTop: 0,
-        height :100,
-        fontSize: 20,
+        height :80,
+        fontSize: 23,
+    },
+
+    textoInstrucao2:{
+        marginTop: -50,
+        height :80,
+        fontSize: 23,
     },
 
     pickerBorder:{
@@ -107,15 +122,14 @@ const styles = StyleSheet.create({
     pickerStyle:{
         width: 290,
         height: 50,
-        paddingTop: '15%',
+        paddingTop: '10%',
         borderWidth: 1,
     },
 
     botao: {
-
         marginTop: 50,
         width: 150,
-        height: 45,
+        height: 50,
         backgroundColor: '#b1d9e7',
         borderRadius: 4,
         alignItems: 'center',

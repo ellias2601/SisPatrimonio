@@ -25,7 +25,11 @@ export default class Consultas extends Component {
             <View style={styles.container}>
 
                 <Text
-                    style={styles.textoNumeroBem}>Informe o número do bem para consulta
+                    style={styles.textoNumeroBem1}>Informe o número do bem
+                </Text>
+
+                <Text
+                    style={styles.textoNumeroBem2}>para consulta
                 </Text>
 
                 <View style={styles.bordaInputNumeroBem}>
@@ -68,17 +72,25 @@ const styles = StyleSheet.create({
 
     },
 
-    textoNumeroBem:{
+    textoNumeroBem1:{
 
-        marginTop: 30,
-        height :60,
-        fontSize: 20,
-        textAlign: 'center'
+        marginTop: 20,
+        height :80,
+        fontSize: 23,
+        //textAlign: 'center'
+    },
+
+    textoNumeroBem2:{
+
+        marginTop: -50,
+        height :80,
+        fontSize: 23,
+        //textAlign: 'center'
     },
 
     bordaInputNumeroBem:{
 
-        marginTop: 20,
+        marginTop: -20,
         borderWidth: 1,
         borderRadius: 8
     },
@@ -93,15 +105,15 @@ const styles = StyleSheet.create({
 
     textoOpcao:{
 
-        marginTop: 30,
-        height :60,
-        fontSize: 20,
+        marginTop: 20,
+        height :80,
+        fontSize: 23,
         textAlign: 'center'
     },
 
     botao: {
 
-        marginTop: 0,
+        marginTop: -20,
         width: 180,
         height: 100,
         backgroundColor: '#b1d9e7',
@@ -112,7 +124,7 @@ const styles = StyleSheet.create({
 
     botaoText: {
 
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
         color: '#545454',
         textAlign: 'center'

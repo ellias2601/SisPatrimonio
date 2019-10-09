@@ -7,6 +7,7 @@
  * https://snack.expo.io/@react-navigation/stacks-in-tabs-v3
  * icones: oblador.gitgub.io/react-native-vector-icons/ MaterialDesign, FontAwesome, AntDesign...
  * ideia para alocacoes layout: github.com/react-navigation/react-navigation/issues/253
+ * bloquear inversao celular
  *
  * @format
  * @flow
