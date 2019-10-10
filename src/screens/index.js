@@ -8,5 +8,6 @@ import CadastroBem from "./CadastroBem";
 import Consultas from "./Consultas";
 import ExibirResultadoConsulta from "./ExibirResultadoConsulta";
 
+
 export {Login, MenuPrincipal, Emissoes, ExibirQRCode, SelecaoFundoPublico, SelecaoTipoBem, CadastroBem, Consultas, ExibirResultadoConsulta};
 
