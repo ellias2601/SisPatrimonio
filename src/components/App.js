@@ -8,6 +8,7 @@
  * icones: oblador.gitgub.io/react-native-vector-icons/ MaterialDesign, FontAwesome, AntDesign...
  * ideia para alocacoes layout: github.com/react-navigation/react-navigation/issues/253
  * bloquear inversao celular
+ * https://infinitered.github.io/ionicons-version-3-search/ lista icones ionicons
  *
  * @format
  * @flow

@@ -15,7 +15,7 @@ class Panel extends Component {
         this.state = {       //Step 3
             title: props.title,
             expanded: true,
-            animation: new Animated.Value(32)
+            animation: new Animated.Value(45)
         };
     };
 
@@ -62,7 +62,7 @@ class Panel extends Component {
             <Animated.View
                 style={[styles.container, {height: this.state.animation}]}>
                 <View style={styles.titleContainer} onLayout={this._setMinHeight.bind(this)}>
-                    <Text style={styles.title}>{this.state.title}</Text>
+
                     <TouchableHighlight
                         style={styles.button}
                         onPress={this.toggle.bind(this)}
@@ -72,6 +72,9 @@ class Panel extends Component {
                             source={icon}
                         ></Image>
                     </TouchableHighlight>
+
+                    <Text style={styles.title}>{this.state.title}</Text>
+
                 </View>
 
                 <View style={styles.body} onLayout={this._setMaxHeight.bind(this)}>
@@ -87,26 +90,36 @@ class Panel extends Component {
 
 
 var styles = StyleSheet.create({
+
     container   : {
+        marginTop: 22,
         backgroundColor: '#fff',
-        margin:10,
-        overflow:'hidden'
+        margin:-14, //aumenta espacamento entre opcoes grid
+        overflow:'hidden',
+        paddingLeft: 40//Ajusta grid de cadastro para esquerda ou direita
     },
+
     titleContainer : {
         flexDirection: 'row'
     },
+
     title       : {
+        marginTop: 5,   //reduz ou aumenta espaco entre calendario e opcoes grid
         flex    : 1,
-        padding : 10,
+        padding : 5,
         color   :'#2a2f43',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize: 20
     },
+
     button      : {
 
     },
+
     buttonImage : {
-        width   : 30,
-        height  : 25
+        marginTop: 5,
+        width   : 40,
+        height  : 40
     },
     body        : {
         padding     : 10,
