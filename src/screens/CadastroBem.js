@@ -73,15 +73,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue1}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue1:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o SubElemento" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Móveis e Utensílios Domésticos" value="1"/>
+                            <Picker.Item label="Mobiliário em Geral" value="3"/>
 
                         </Picker>
 
@@ -114,15 +113,15 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue2}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue2:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione a Classificação" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Cadeira" value="1"/>
+                            <Picker.Item label="Mesa" value="2"/>
+                            <Picker.Item label="Otoscópio" value="3"/>
 
                         </Picker>
 
@@ -186,15 +185,16 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue3}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue3:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o Estado do Bem" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Ótimo" value="1"/>
+                            <Picker.Item label="Bom" value="2"/>
+                            <Picker.Item label="Regular" value="3"/>
+                            <Picker.Item label="Sucata" value="4"/>
 
                         </Picker>
 
@@ -232,15 +232,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue4}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue4:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o Responsável" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="José da Silva" value="1"/>
+                            <Picker.Item label="Kaíque Matheus" value="2"/>
 
                         </Picker>
 
@@ -262,15 +261,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue5}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue5:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione a Origem" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Almoxarifado 01" value="1"/>
+                            <Picker.Item label="Depósito Municipal" value="2"/>
 
                         </Picker>
 
@@ -286,15 +284,13 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue6}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue6:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione a Secretaria" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Secretaria Municipal de Educação" value="1"/>
 
                         </Picker>
 
@@ -310,15 +306,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue7}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue7:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o Destino" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Escola Municipal José Caldas" value="1"/>
+                            <Picker.Item label="Creche Vó Maria" value="2"/>
 
                         </Picker>
 
@@ -334,15 +329,15 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue8}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue8:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o SubDestino" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Secretaria" value="1"/>
+                            <Picker.Item label="Coordenação" value="2"/>
+                            <Picker.Item label="Sala de Aula 01" value="3"/>
 
                         </Picker>
 
@@ -363,15 +358,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue9}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue9:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione a Empresa" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Fernando Alves Martins EPP" value="1"/>
+                            <Picker.Item label="Papelaria Colegial LTDA" value="2"/>
 
                         </Picker>
 
@@ -387,15 +381,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue10}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue10:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione a Conta Contábil" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Mobiliário em Geral (10.3456.234.22)" value="1"/>
+                            <Picker.Item label="Móveis e Utensilios Domésticos (10.222.222.22)" value="2"/>
 
                         </Picker>
 
@@ -411,15 +404,14 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue11}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue11:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o Tipo de Aquisição" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Comprado" value="1"/>
+                            <Picker.Item label="Doado" value="2"/>
 
                         </Picker>
 
@@ -435,15 +427,15 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue12}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue12:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Selecione o Tipo de Incorporação" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Transferência Recebida" value="1"/>
+                            <Picker.Item label="Doação de Instituições Públicas" value="2"/>
+                            <Picker.Item label="Compra Direta" value="3 - Veículos"/>
 
                         </Picker>
 
@@ -496,15 +488,15 @@ export default class CadastroBem extends Component {
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue:itemValue})}
+                            selectedValue={this.state.PickerValue13}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue13:itemValue})}
                             borderColor
 
                         >
                             <Picker.Item label="Tipo de Combustível" value="0"/>
-                            <Picker.Item label="Móveis" value="1 - Móveis"/>
-                            <Picker.Item label="Imóveis" value="2 - Imóveis"/>
-                            <Picker.Item label="Veículos" value="3 - Veículos"/>
+                            <Picker.Item label="Gasolina" value="1"/>
+                            <Picker.Item label="Álcool" value="2"/>
+                            <Picker.Item label="Diesel" value="3"/>
 
                         </Picker>
 
@@ -630,8 +622,6 @@ var styles = StyleSheet.create({
         paddingTop      : 30,
         flex            : 1,
         backgroundColor : '#fff',
-
-
     },
 
     viewData:{

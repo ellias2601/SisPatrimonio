@@ -9,6 +9,7 @@
  * ideia para alocacoes layout: github.com/react-navigation/react-navigation/issues/253
  * bloquear inversao celular
  * https://infinitered.github.io/ionicons-version-3-search/ lista icones ionicons
+ * medium.com/react-native-training/react-native-portrait-device-orientation-9bcdeeac0b03 //bloquear orientacao vertical app
  *
  * @format
  * @flow

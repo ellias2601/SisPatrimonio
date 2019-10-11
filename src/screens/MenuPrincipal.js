@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image} from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default class MenuPrincipal extends Component {
 
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => ({
 
         title: 'Menu Principal',
         headerTitleStyle: {
@@ -13,9 +14,23 @@ export default class MenuPrincipal extends Component {
         headerStyle:{
             backgroundColor: '#b1d9e7'
         },
+
         headerTintColor: 'black',
 
-    };
+         headerRight: (
+            <TouchableOpacity
+                //title={logout}
+                onPress={() => {
+                    navigation.navigate('Login')
+                }}
+                style={{margin:18}}
+            >
+                <Ionicons name={"md-power"} size={30} width={100} height={100} color={"black"}/>
+
+            </TouchableOpacity>
+        ),
+    });
+
 
     render () {
         return(
@@ -71,6 +86,23 @@ const styles = StyleSheet.create({
         height: 250,
 
     },
+
+    botao: {
+
+        marginTop: 40,
+        width: 150,
+        height: 45,
+        backgroundColor: '#b1d9e7',
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    botaoText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#545454'
+    }
 
 });
 
