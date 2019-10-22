@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
         //justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#8cc6df',
-        width:370,
+        width:340,
         paddingTop:50,
         paddingBottom:50,
-        paddingLeft:20,
+        paddingLeft:'7%',
         paddingRight: 20,
         borderRadius:10
 

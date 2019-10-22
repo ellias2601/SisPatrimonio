@@ -104,7 +104,9 @@ const styles = StyleSheet.create({
 
         flex:1,
        // justifyContent:'space-between',
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        margin: -10
+
 
     },
 
@@ -233,6 +235,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
         marginLeft: 30,
         fontSize: 18,
+        marginBottom: 20
 
     },
 

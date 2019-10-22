@@ -100,7 +100,7 @@ export default class CadastroBem extends Component {
                             placeholderTextColor="#000"
                         />
 
-                        <View style={styles.iconBorderInput}>
+                        <View style={styles.iconBorder}>
 
                             <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
 
@@ -622,12 +622,13 @@ var styles = StyleSheet.create({
         paddingTop      : 30,
         flex            : 1,
         backgroundColor : '#fff',
+        margin: -10
     },
 
     viewData:{
         //justifyContent: 'center',
         //alignItems: 'center',
-        paddingLeft: 95 // posicionamento do datepicker
+        paddingLeft: 80 // posicionamento do datepicker
     },
 
     textoDataCadastro:{
@@ -643,8 +644,8 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row', //Alinhamento dos icones de status
-        width: 300,  //Reduz ou aumenta borda do picker para direita
-        paddingRight: 200
+        width: 280,  //Reduz ou aumenta borda do picker para direita
+        //paddingRight: 60
     },
 
     pickerStyle:{
@@ -657,7 +658,7 @@ var styles = StyleSheet.create({
     iconBorder:{
 
         marginTop: 8,
-        marginLeft: 30
+        marginLeft: 9  ///Mexendo
     },
 
     bordaInput:{
@@ -666,7 +667,7 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row',
-        width: 300, //Reduz ou aumentar borda do imput para a direita
+        width: 280, //Reduz ou aumentar borda do imput para a direita
         paddingRight: 200
     },
 

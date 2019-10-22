@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Picker} from "react-native";
+import Api from '../services/Api';
+
+//http://jsonplaceholder.typicode.com/users = API de Testes
 
 export default class SelecaoFundoPublico extends Component {
 
@@ -40,6 +43,46 @@ export default class SelecaoFundoPublico extends Component {
     }
 
 
+    //Inicialização de estados. Funciona como uma sessão, dados podem ser armazenados e recuperados
+    //em tempo de execução.
+
+    state = {
+
+        ruaEndereco: ' ',
+    }
+
+    //Carrega dados da API ao renderizar a interface
+
+    componentDidMount() {
+
+        this.loadItens();
+    }
+
+    // Carrega dados da API, conforme solicitação URL
+
+    loadItens = async () => {
+
+        console.log('Carregando Usuários');
+        const response = await Api.get('/users');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(response.data);
+
+        //Apresenta no console a rua do usuário na posição 0 (teste coleta dados JSON)
+        console.log(response.data[0].address.street);
+
+        //Armazena no state para posterior uso a rua do usuário capturada via API
+        this.setState( { ruaEndereco: response.data[1].address.street})
+
+        //Como apresentar a variavel ruaEndereco?
+        // {this.state.ruaEndereco}
+
+        //Armazena na variável data todos os dados carregados via API
+        //const { data } : response.data;
+
+    };
+
+
     render () {
 
         return(
@@ -53,6 +96,12 @@ export default class SelecaoFundoPublico extends Component {
                     para Cadastro
                 </Text>
 
+                {/*
+                    <Text>
+                        {this.state.ruaEndereco}
+                    </Text>
+                 */
+                }
                     <View style={styles.pickerBorder}>
 
                          <Picker

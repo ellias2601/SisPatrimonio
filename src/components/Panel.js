@@ -71,6 +71,7 @@ class Panel extends Component {
                             style={styles.buttonImage}
                             source={icon}
                         ></Image>
+
                     </TouchableHighlight>
 
                     <Text style={styles.title}>{this.state.title}</Text>
@@ -87,8 +88,6 @@ class Panel extends Component {
 }
 
 
-
-
 var styles = StyleSheet.create({
 
     container   : {
@@ -96,7 +95,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#fff',
         margin:-14, //aumenta espacamento entre opcoes grid
         overflow:'hidden',
-        paddingLeft: 40//Ajusta grid de cadastro para esquerda ou direita
+        paddingLeft: 35//Ajusta grid de cadastro para esquerda ou direita
     },
 
     titleContainer : {
