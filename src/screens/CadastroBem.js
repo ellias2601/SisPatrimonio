@@ -257,6 +257,30 @@ export default class CadastroBem extends Component {
 
                 <Panel title="Localização do Bem">
 
+
+                    <View style={styles.pickerBorder}>
+
+                        <Picker
+                            style={styles.pickerStyle}
+                            selectedValue={this.state.PickerValue6}
+                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue6:itemValue})}
+                            borderColor
+
+                        >
+                            <Picker.Item label="Selecione a Secretaria" value="0"/>
+                            <Picker.Item label="Secretaria Municipal de Educação" value="1"/>
+
+                        </Picker>
+
+                        <View style={styles.iconBorder}>
+
+                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+
+                        </View>
+
+                    </View>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
@@ -272,27 +296,8 @@ export default class CadastroBem extends Component {
 
                         </Picker>
 
-                        <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
 
-                        </View>
-
-                    </View>
-
-                    <View style={styles.pickerBorder}>
-
-                        <Picker
-                            style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue6}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue6:itemValue})}
-                            borderColor
-
-                        >
-                            <Picker.Item label="Selecione a Secretaria" value="0"/>
-                            <Picker.Item label="Secretaria Municipal de Educação" value="1"/>
-
-                        </Picker>
 
                         <View style={styles.iconBorder}>
 
@@ -644,7 +649,7 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row', //Alinhamento dos icones de status
-        width: 280,  //Reduz ou aumenta borda do picker para direita
+        width: 280,  //Reduz ou aumenta borda do picker para direita!!!!!!!!
         //paddingRight: 60
     },
 
@@ -658,7 +663,7 @@ var styles = StyleSheet.create({
     iconBorder:{
 
         marginTop: 8,
-        marginLeft: 9  ///Mexendo
+        marginLeft: 9  ///Ajusta icones de status para a esquerda ou direita!!!!!
     },
 
     bordaInput:{
@@ -667,7 +672,7 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row',
-        width: 280, //Reduz ou aumentar borda do imput para a direita
+        width: 280, //Reduz ou aumentar borda do imput para a direita!!!!!!
         paddingRight: 200
     },
 
