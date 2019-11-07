@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, ScrollView} from "react-native";
+import {Text, View, StyleSheet, ScrollView, ActivityIndicator} from "react-native";
+import Api from '../services/Api';
 
 export default class ExibirResutadoConsulta extends Component {
+
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+
+            //status de carregamento dos dados da API. Quando os dados forem carregados, seu valor muda para false.
+            isLoading: true,
+
+        };
+
+    }
 
     static navigationOptions = {
 
@@ -15,80 +29,222 @@ export default class ExibirResutadoConsulta extends Component {
         headerTintColor: 'black',
     };
 
+    //Carrega dados da API ao renderizar a interface
+
+    componentDidMount() {
+
+        let numeroPatrimonio = this.props.navigation.state.params.numeroBem;
+
+        this.loadItens(numeroPatrimonio);
+
+    }
+
+    // Carrega dados da API, conforme solicitação URL
+
+    loadItens = async (numeroPatrimonio) => {
+
+        console.log('Carregando Dados do Bem Informado');
+
+        let url = '/consultaPorNumeroPatrimonio/' + numeroPatrimonio;
+
+
+        const response = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(response.data);
+
+        this.setState({
+            isLoading: false,
+            dataSource: response.data
+        }, function() {
+            // Callback
+        });
+
+    };
+
     clicou =() =>{
 
         this.props.navigation.navigate('Consultas')
     };
 
     render () {
+
+        if (this.state.isLoading) {
+            return (
+                <View style={{flex: 1, paddingTop: 20}}>
+                    <ActivityIndicator />
+                </View>
+            );
+        }
+
         return(
             <View style={styles.container}>
 
                 <ScrollView>
 
-                <Text
-                    style={styles.textoSubElemento}>SubElemento:
-                </Text>
+                    <Text
+                        style={styles.tituloInformacaoTopo}>Subelemento:
+                    </Text>
 
-                <Text
-                    style={styles.dadosSubElemento}>22 - Móveis e Utensílios Domésticos
-                </Text>
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSubElemento}
+                    </Text>
 
-                <Text
-                    style={styles.textoDescricaoBem}>Descrição do Bem:
-                </Text>
 
-                <Text
-                    style={styles.dadosDescricaoBem}>Mesa Oval para Reunião
-                </Text>
 
-                <Text
-                    style={styles.textoClassificacaoBem}>Classificação:
-                </Text>
+                     <Text
+                        style={styles.tituloInformacao}>Descrição do Bem:
+                     </Text>
 
-                <Text
-                    style={styles.dadosClassificacaoBem}>Mesa
-                </Text>
+                     <Text
+                         style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoBem}
+                     </Text>
 
-                <Text
-                    style={styles.textoValorDoBem}>Valor do Bem:
-                </Text>
 
-                <Text
-                    style={styles.dadosValorDoBem}>R$ 2000.00
-                </Text>
 
-                <Text
-                    style={styles.textoNumeroBem}>Número do Bem:
-                </Text>
+                     <Text
+                         style={styles.tituloInformacao}>Classificação:
+                     </Text>
 
-                <Text
-                    style={styles.dadosNumeroBem}>022324
-                </Text>
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeClassificacao}
+                    </Text>
 
-                <Text
-                    style={styles.textoNumeroBemAnterior}>Número do Bem Anterior:
-                </Text>
 
-                <Text
-                    style={styles.dadosNumeroBemAnterior}>012234
-                </Text>
 
-                <Text
-                    style={styles.textoEstadoBem}>Estado do Bem:
-                </Text>
+                    <Text
+                         style={styles.tituloInformacao}>Valor do Bem:
+                    </Text>
 
-                <Text
-                    style={styles.dadosEstadoBem}>1 - Ótimo
-                </Text>
+                    <Text
+                        style={styles.conteudoInformacao}>R$ {this.state.dataSource[0].valorBem}
+                    </Text>
 
-                <Text
-                    style={styles.textoResponsavelBem}>Responsável:
-                </Text>
 
-                <Text
-                    style={styles.dadosResponsavelBem}>22 - José da Silva
-                </Text>
+
+                    <Text
+                        style={styles.tituloInformacao}>Número do Bem Anterior (P.A):
+                     </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].numeroAntigoBem}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Estado do Bem:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeEstadoBem}
+                    </Text>
+
+
+
+                     <Text
+                        style={styles.tituloInformacao}>Responsável:
+                     </Text>
+
+                     <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeResponsavel} {this.state.dataSource[0].sobrenomeResponsavel}
+                     </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Secretaria:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSecretaria}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Origem:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoOrigem}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Destino:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeDestino}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Subdestino:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeSubDestino}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Empresa:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeFantEmpresa}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Conta Contábil:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoContaContabil}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Tipo de Aquisição:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoAquisicao}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Tipo de Incorporação:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoIncorporacao}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.tituloInformacao}>Observações:
+                    </Text>
+
+                    <Text
+                        style={styles.conteudoInformacao}>{this.state.dataSource[0].observaçõesBem}
+                    </Text>
+
+
+
+                    <Text
+                        style={styles.conteudoInformacao}>
+                    </Text>
 
                 </ScrollView>
 
@@ -110,7 +266,7 @@ const styles = StyleSheet.create({
 
     },
 
-    textoSubElemento:{
+    tituloInformacaoTopo:{
 
         marginTop: 25,
         marginLeft: 30,
@@ -118,15 +274,7 @@ const styles = StyleSheet.create({
 
     },
 
-    dadosSubElemento:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoDescricaoBem:{
+    tituloInformacao:{
 
         marginTop: 30,
         marginLeft: 30,
@@ -134,110 +282,12 @@ const styles = StyleSheet.create({
 
     },
 
-    dadosDescricaoBem:{
+    conteudoInformacao:{
 
         marginTop: 0,
         marginLeft: 30,
         fontSize: 18,
 
     },
-
-    textoClassificacaoBem:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosClassificacaoBem:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoValorDoBem:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosValorDoBem:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoNumeroBem:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosNumeroBem:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoNumeroBemAnterior:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosNumeroBemAnterior:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoEstadoBem:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosEstadoBem:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    textoResponsavelBem:{
-
-        marginTop: 30,
-        marginLeft: 30,
-        fontSize: 18,
-
-    },
-
-    dadosResponsavelBem:{
-
-        marginTop: 0,
-        marginLeft: 30,
-        fontSize: 18,
-        marginBottom: 20
-
-    },
-
 });
 

@@ -7,6 +7,7 @@ import Api from '../services/Api';
 export default class SelecaoFundoPublico extends Component {
 
     constructor(props){
+
         super(props);
 
         this.state={

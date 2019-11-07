@@ -3,6 +3,16 @@ import {Text, TouchableOpacity, View, StyleSheet, Image, TextInput} from "react-
 
 export default class Consultas extends Component {
 
+    constructor(props) {
+
+        super(props);
+
+        this.state = {
+            numeroBem: '',
+        };
+
+    }
+
     static navigationOptions = {
 
         title: 'Identificação (Consulta)',
@@ -17,7 +27,7 @@ export default class Consultas extends Component {
 
     clicou =() =>{
 
-            this.props.navigation.navigate('ExibirResultadoConsulta')
+            this.props.navigation.navigate('ExibirResultadoConsulta', {numeroBem: this.state.numeroBem,})
     };
 
     render () {
@@ -35,8 +45,12 @@ export default class Consultas extends Component {
                 <View style={styles.bordaInputNumeroBem}>
 
                 <TextInput
+
+                    value={this.state.numeroBem}
+                    onChangeText={numeroBem => this.setState({ numeroBem })}
                     style={styles.inputNumeroBem}
-                    placeholder="CPF"
+                    onEndEditing={() => {this.clicou()}}
+
                 />
 
                 </View>
@@ -65,10 +79,11 @@ const styles = StyleSheet.create({
 
     container: {
 
+        marginTop: '-10%', //ajusta altura do conteudo da tela
         flex:1,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#fff'
+        //backgroundColor:'#fff'
 
     },
 
@@ -97,9 +112,11 @@ const styles = StyleSheet.create({
 
     inputNumeroBem: {
 
-        width: 290,
+        width: 260, //tamanho da borda do input
         height: 50,
-        paddingTop: '10%',
+        fontSize: 22,
+        paddingLeft: 7,
+        textAlign: 'center'
 
     },
 

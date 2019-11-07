@@ -204,8 +204,8 @@
 -- Deve devolver (Erro): JSON com mensagem erro (Não foi possível realizar o cadastro do bem, tente novamente!)
 
    INSERT INTO Bem (dataCadastroBem, descricaoBem, valorBem, numeroAtualBem, numeroAntigoBem, observaçõesBem, qtdACadastrarBem, idUsuario, idFundo, idTipoBem,   	             idSubElemento, idClassificacao, idEstadoBem, idEmpresa, idResponsavel, idOrigem, idDestino, idSubDestino, idContaContabil, idTipoAquisicao,
-                    idTipoIncorporacao) 
-   VALUES ('2019-12-12', 'Cadeira Fixa Almofadada', 5000.00, 023345, 012345, 'Recepção, Atrás do Balcão', '2', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1);
+                    idTipoIncorporacao, idSecretaria) 
+   VALUES ('2019-12-12', 'Cadeira Fixa Almofadada', 5000.00, 023345, 012345, 'Recepção, Atrás do Balcão', '2', 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1);
 
 
 
@@ -216,7 +216,7 @@
 -- Deve devolver (Sucesso): JSON com todos os dados do bem  (por posição)
 -- Deve devolver (Erro): JSON com mensagem erro (Não foi possível consultar os dados do bem, tente novamente! ou Bem não cadastrado!)
 
-   SELECT Bem.dataCadastroBem, Bem.descricaoBem, Bem.valorBem, Bem.numeroAtualBem, Bem.numeroAntigoBem, Bem.observaçõesBem, Fundo.nomeFundo, TipoBem.nomeTipoBem,   	    	   SubElemento.descricaoSubElemento, Classificacao.nomeClassificacao, EstadoBem.nomeEstadoBem, Empresa.nomeFantEmpresa, Responsavel.nomeResponsavel,   		   	  Responsavel.sobrenomeResponsavel, Origem.descricaoOrigem, Destino.nomeDestino, SubDestino.nomeSubDestino, ContaContabil.descricaoContaContabil, 			 	TipoAquisicao.descricaoTipoAquisicao, TipoIncorporacao.descricaoTipoIncorporacao
+   SELECT Bem.dataCadastroBem, Bem.descricaoBem, Bem.valorBem, Bem.numeroAtualBem, Bem.numeroAntigoBem, Bem.observaçõesBem, Fundo.nomeFundo, TipoBem.nomeTipoBem,   	    	   SubElemento.descricaoSubElemento, Classificacao.nomeClassificacao, EstadoBem.nomeEstadoBem, Empresa.nomeFantEmpresa, Responsavel.nomeResponsavel,   		   	  Responsavel.sobrenomeResponsavel, Origem.descricaoOrigem, Destino.nomeDestino, SubDestino.nomeSubDestino, ContaContabil.descricaoContaContabil, 			 	TipoAquisicao.descricaoTipoAquisicao, TipoIncorporacao.descricaoTipoIncorporacao, Secretaria.descricaoSecretaria
  
        FROM Bem
        INNER JOIN Fundo
@@ -245,5 +245,7 @@
        ON TipoAquisicao.idTipoAquisicao = Bem.idTipoAquisicao
        INNER JOIN TipoIncorporacao
        ON TipoIncorporacao.idTipoIncorporacao = Bem.idTipoIncorporacao
+       INNER JOIN Secretaria
+       ON Secretaria.idSecretaria = Bem.idSecretaria
        WHERE Bem.numeroAtualBem = 023345
 
