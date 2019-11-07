@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Picker} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Picker, AsyncStorage} from "react-native";
 
 export default class SelecaoTipoBem extends Component {
 
@@ -41,6 +41,16 @@ export default class SelecaoTipoBem extends Component {
 
     }
 
+    displayData = async () => {
+        try{
+            var idRec = await AsyncStorage.getItem('idFundo');
+            alert(JSON.parse(idRec));
+        }
+
+        catch(error){
+            alert(error);
+        }
+    }
 
     render () {
 
@@ -54,6 +64,7 @@ export default class SelecaoTipoBem extends Component {
                 <Text style={styles.textoInstrucao2}>
                     para Cadastro
                 </Text>
+
 
                 <View style={styles.pickerBorder}>
 
