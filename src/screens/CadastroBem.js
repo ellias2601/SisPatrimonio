@@ -1,31 +1,360 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker, ActivityIndicator, AsyncStorage} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Panel from "../components/Panel";
 import DatePicker from 'react-native-datepicker';
+import Api from '../services/Api';
 
 console.disableYellowBox = true;
 
 export default class CadastroBem extends Component {
 
     constructor(props) {
+
         super(props);
 
-        this.state = {date:"15-05-2018"}
+        this.state = {
+
+            date:"15-05-2018",
+
+            //status de carregamento dos dados da API. Quando os dados forem carregados, seu valor muda para false.
+            isLoading: true,
+
+            //inicializa o id dos fundos a serem preenchidos no picker.
+            idSubElementoSelecionado: 1,
+            idClassificacaoSelecionado: 1,
+            idEstadoBemSelecionado:1,
+            idResponsavelSelecionado:1,
+            idSecretariaSelecionado: 1,
+            idOrigemSelecionado: 1,
+            idDestinoSelecionado:1,
+            idSubDestinoSelecionado:1,
+            idEmpresaSelecionado:1,
+            idContaContabilSelecionado:1,
+            idTipoAquisicaoSelecionado:1,
+            idTipoIncorporacaoSelecionado:1,
+
+            //inicializa inputs
+            descricaoBem: '',
+            valorBem: '',
+            novoNumeroBem: '',
+            numeroBemAnterior: '',
+            qtdBemACadastrar: '',
+            observacoesBem: '',
+
+        }
     };
 
     static navigationOptions = {
 
         title: 'Cadastro de Bens',
-        headerTitleStyle: {},
+
+        headerTitleStyle: {
+
+        },
+
         headerStyle: {
             backgroundColor: '#b1d9e7'
         },
+
         headerTintColor: 'black',
 
     };
 
+    //Carrega dados da API ao renderizar a interface
+
+    async componentDidMount() {
+
+         await this.loadIdFundoSelecionado();
+
+        await this.loadSubElementos();
+        await this.loadClassificacoes();
+        await this.loadEstadosBem();
+        await this.loadResponsaveis();
+        await this.loadSecretariasPorFundo();
+        await this.loadOrigensPorFundo();
+        await this.loadDestinosPorFundo();
+        await this.loadSubDestinosPorFundo();
+        await this.loadEmpresas();
+        await this.loadContasContabeis();
+        await this.loadTiposAquisicao();
+        await this.loadTiposIncorporacao();
+
+    }
+
+    loadIdFundoSelecionado = async () => {
+
+        let idFundoJSON = await AsyncStorage.getItem('idFundo');
+        var idFundoString = JSON.parse(idFundoJSON);
+
+
+        //console.log('ID Fundo Selecionado: ' + idFundoString);
+
+        this.setState({
+            dataSourceIDFundo: idFundoString,
+
+        }, function() {
+            // Callback
+            //console.log('ID Fundo Selecionado: ' + this.state.dataSourceIDFundo)
+        });
+
+
+    }
+
+    // Carrega dados da API, conforme solicitação URL
+
+    loadSubElementos = async () => {
+
+        console.log('Carregando SubElementos');
+        const responseSubElementos = await Api.get('/subElementos');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseSubElementos.data);
+
+        this.setState({
+            dataSourceSubElementos: responseSubElementos.data,
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadClassificacoes = async () => {
+
+        console.log('Carregando Classificações');
+        const responseClassificacoes = await Api.get('/classificacoes');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseClassificacoes.data);
+
+        this.setState({
+
+            dataSourceClassificacoes: responseClassificacoes.data,
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadEstadosBem = async () => {
+
+        console.log('Carregando Estados Bem');
+        const responseEstadosBem = await Api.get('/estadosBem');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseEstadosBem.data);
+
+        this.setState({
+
+            dataSourceEstadosBem: responseEstadosBem.data,
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadResponsaveis = async () => {
+
+        console.log('Carregando Reponsaveis');
+        const responseResponsaveis= await Api.get('/responsaveis');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseResponsaveis.data);
+
+        this.setState({
+            dataSourceResponsaveis: responseResponsaveis.data,
+
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadSecretariasPorFundo = async () => {
+
+        console.log('Carregando Dados da Secretaria conforme Fundo');
+
+        let url = '/secretariasPorFundo/' + this.state.dataSourceIDFundo;
+
+        const responseSecretarias = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseSecretarias.data);
+
+        this.setState({
+
+            dataSourceSecretarias: responseSecretarias.data,
+
+        }, function() {
+
+        });
+
+    };
+
+    loadOrigensPorFundo = async () => {
+
+        console.log('Carregando Dados da Origem conforme Fundo');
+
+        let url = '/origensPorFundo/' + this.state.dataSourceIDFundo;
+
+        const responseOrigens = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseOrigens.data);
+
+        this.setState({
+
+            dataSourceOrigens: responseOrigens.data,
+
+        }, function() {
+
+        });
+
+    };
+
+    loadDestinosPorFundo = async () => {
+
+        console.log('Carregando Dados do Destino conforme Fundo');
+
+        let url = '/destinosPorFundo/' + this.state.dataSourceIDFundo;
+
+        const responseDestinos = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseDestinos.data);
+
+        this.setState({
+
+            dataSourceDestinos: responseDestinos.data,
+
+
+        }, function() {
+
+        });
+
+    };
+
+    loadSubDestinosPorFundo = async () => {
+
+        console.log('Carregando Dados do SubDestino conforme Fundo');
+
+        let url = '/subDestinosPorFundo/' + this.state.dataSourceIDFundo;
+
+        const responseSubDestinos = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseSubDestinos.data);
+
+        this.setState({
+
+            dataSourceSubDestinos: responseSubDestinos.data,
+
+
+        }, function() {
+
+        });
+
+    };
+
+    loadEmpresas = async () => {
+
+        console.log('Carregando Empresas');
+        const responseEmpresas= await Api.get('/empresas');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseEmpresas.data);
+
+        this.setState({
+
+            dataSourceEmpresas: responseEmpresas.data,
+
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadContasContabeis = async () => {
+
+        console.log('Carregando Contas Contabeis');
+        const responseContasContabeis= await Api.get('/contascontabeis');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseContasContabeis.data);
+
+        this.setState({
+
+            dataSourceContasContabeis: responseContasContabeis.data,
+
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadTiposAquisicao = async () => {
+
+        console.log('Carregando Tipos Aquisicao');
+        const responseTiposAquisicao= await Api.get('/tiposaquisicao');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseTiposAquisicao.data);
+
+        this.setState({
+
+            dataSourceTiposAquisicao: responseTiposAquisicao.data,
+
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+    loadTiposIncorporacao = async () => {
+
+        console.log('Carregando Tipos Incorporacao');
+        const responseTiposIncorporacao= await Api.get('/tiposincorporacao');
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseTiposIncorporacao.data);
+
+        this.setState({
+
+            dataSourceTiposIncorporacao: responseTiposIncorporacao.data,
+            isLoading:false,
+
+
+        }, function() {
+            // Callback
+        });
+
+    };
+
+
+
+
+
     render() {
+
+        if (this.state.isLoading) {
+            return (
+                <View style={{flex: 1, paddingTop: 20}}>
+                    <ActivityIndicator />
+                </View>
+            );
+        }
 
         return (
 
@@ -69,18 +398,23 @@ export default class CadastroBem extends Component {
 
                 <Panel title="Identificação do Bem">
 
+                    <Text style={styles.labelCampos}>
+                        Selecione o SubElemento:
+                    </Text>
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
+
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue1}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue1:itemValue})}
+                            selectedValue={this.state.idSubElementoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idSubElementoSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o SubElemento" value="0"/>
-                            <Picker.Item label="Móveis e Utensílios Domésticos" value="1"/>
-                            <Picker.Item label="Mobiliário em Geral" value="3"/>
+                            { this.state.dataSourceSubElementos.map((item, key)=>(
+                                <Picker.Item label={item.descricaoSubElemento} value={item.idSubElemento} key={key} />)
+                            )}
 
                         </Picker>
 
@@ -92,9 +426,16 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Informe a Descrição do Bem:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.descricaoBem}
                             style={styles.input}
                             placeholder="Descrição do Bem"
                             placeholderTextColor="#000"
@@ -109,19 +450,24 @@ export default class CadastroBem extends Component {
                     </View>
 
 
+                    <Text style={styles.labelCampos}>
+                        Selecione a Classificação:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue2}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue2:itemValue})}
+                            selectedValue={this.state.idClassificacaoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idClassificacaoSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione a Classificação" value="0"/>
-                            <Picker.Item label="Cadeira" value="1"/>
-                            <Picker.Item label="Mesa" value="2"/>
-                            <Picker.Item label="Otoscópio" value="3"/>
+
+                            { this.state.dataSourceClassificacoes.map((item, key2)=>(
+                                <Picker.Item label={item.nomeClassificacao} value={item.idClassificacao} key={key2} />)
+                            )}
 
                         </Picker>
 
@@ -133,9 +479,16 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Informe o Valor do Bem:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.valorBem}
                             style={styles.input}
                             placeholder="Valor do Bem"
                             placeholderTextColor="#000"
@@ -149,9 +502,15 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+                    <Text style={styles.labelCampos}>
+                        Informe o Novo Número do Bem:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.novoNumeroBem}
                             style={styles.input}
                             placeholder="Novo Número do Bem"
                             placeholderTextColor="#000"
@@ -165,9 +524,14 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+                    <Text style={styles.labelCampos}>
+                        Informe o Número do Bem Anterior:
+                    </Text>
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.numeroBemAnterior}
                             style={styles.input}
                             placeholder="Número do Bem Anterior"
                             placeholderTextColor="#000"
@@ -181,20 +545,25 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Selecione o Estado do Bem:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue3}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue3:itemValue})}
+                            selectedValue={this.state.idEstadoBemSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idEstadoBemSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o Estado do Bem" value="0"/>
-                            <Picker.Item label="Ótimo" value="1"/>
-                            <Picker.Item label="Bom" value="2"/>
-                            <Picker.Item label="Regular" value="3"/>
-                            <Picker.Item label="Sucata" value="4"/>
+                            { this.state.dataSourceEstadosBem.map((item, key3)=>(
+                                <Picker.Item label={item.nomeEstadoBem} value={item.idEstadobem} key={key3} />)
+                            )}
+
 
                         </Picker>
 
@@ -206,9 +575,16 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Quantidade de Bens a Cadastrar:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.qtdBemACadastrar}
                             style={styles.input}
                             placeholder="Quantidade de Bens a Cadastrar"
                             placeholderTextColor="#000"
@@ -228,18 +604,22 @@ export default class CadastroBem extends Component {
 
                 <Panel title="Dados do Responsável">
 
+                    <Text style={styles.labelCampos}>
+                        Selecione o Responsável:
+                    </Text>
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue4}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue4:itemValue})}
+                            selectedValue={this.state.idResponsavelSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idResponsavelSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o Responsável" value="0"/>
-                            <Picker.Item label="José da Silva" value="1"/>
-                            <Picker.Item label="Kaíque Matheus" value="2"/>
+                            { this.state.dataSourceResponsaveis.map((item, key4)=>(
+                                <Picker.Item label={item.nomeResponsavel  + ' ' + item.sobrenomeResponsavel} value={item.idResponsavel} key={key4} />)
+                            )}
 
                         </Picker>
 
@@ -253,22 +633,27 @@ export default class CadastroBem extends Component {
                 </Panel>
 
 
-
-
                 <Panel title="Localização do Bem">
 
 
+                    <Text style={styles.labelCampos}>
+                        Selecione a Secretaria:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue6}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue6:itemValue})}
+                            selectedValue={this.state.idSecretariaSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idSecretariaSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione a Secretaria" value="0"/>
-                            <Picker.Item label="Secretaria Municipal de Educação" value="1"/>
+                            { this.state.dataSourceSecretarias.map((item, key5)=>(
+                                <Picker.Item label={item.descricaoSecretaria} value={item.idSecretaria} key={key5} />)
+                            )}
+
 
                         </Picker>
 
@@ -281,44 +666,23 @@ export default class CadastroBem extends Component {
                     </View>
 
 
-                    <View style={styles.pickerBorder}>
+                    <Text style={styles.labelCampos}>
+                        Selecione a Origem:
+                    </Text>
 
-                        <Picker
-                            style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue5}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue5:itemValue})}
-                            borderColor
-
-                        >
-                            <Picker.Item label="Selecione a Origem" value="0"/>
-                            <Picker.Item label="Almoxarifado 01" value="1"/>
-                            <Picker.Item label="Depósito Municipal" value="2"/>
-
-                        </Picker>
-
-
-
-
-                        <View style={styles.iconBorder}>
-
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
-
-                        </View>
-
-                    </View>
 
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue7}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue7:itemValue})}
+                            selectedValue={this.state.idOrigemSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idOrigemSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o Destino" value="0"/>
-                            <Picker.Item label="Escola Municipal José Caldas" value="1"/>
-                            <Picker.Item label="Creche Vó Maria" value="2"/>
+                            { this.state.dataSourceOrigens.map((item, key6)=>(
+                                <Picker.Item label={item.descricaoOrigem} value={item.idOrigem} key={key6} />)
+                            )}
 
                         </Picker>
 
@@ -330,19 +694,54 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Selecione o Destino:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue8}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue8:itemValue})}
+                            selectedValue={this.state.idDestinoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idDestinoSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o SubDestino" value="0"/>
-                            <Picker.Item label="Secretaria" value="1"/>
-                            <Picker.Item label="Coordenação" value="2"/>
-                            <Picker.Item label="Sala de Aula 01" value="3"/>
+                            { this.state.dataSourceDestinos.map((item, key6)=>(
+                                <Picker.Item label={item.nomeDestino} value={item.idDestino} key={key6} />)
+
+                            )}
+
+                        </Picker>
+
+                        <View style={styles.iconBorder}>
+
+                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+
+                        </View>
+
+                    </View>
+
+                    <Text style={styles.labelCampos}>
+                        Selecione o SubDestino:
+                    </Text>
+
+
+                    <View style={styles.pickerBorder}>
+
+                        <Picker
+                            style={styles.pickerStyle}
+                            selectedValue={this.state.idSubDestinoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idSubDestinoSelecionado:itemValue})}
+                            borderColor
+
+                        >
+                            { this.state.dataSourceSubDestinos.map((item, key7)=>(
+                                <Picker.Item label={item.nomeSubDestino} value={item.idSubDestino} key={key7} />)
+
+                            )}
 
                         </Picker>
 
@@ -359,18 +758,25 @@ export default class CadastroBem extends Component {
 
                 <Panel title="Dados Contábeis">
 
+                    <Text style={styles.labelCampos}>
+                        Selecione a Empresa:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue9}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue9:itemValue})}
+                            selectedValue={this.state.idEmpresaSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idEmpresaSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione a Empresa" value="0"/>
-                            <Picker.Item label="Fernando Alves Martins EPP" value="1"/>
-                            <Picker.Item label="Papelaria Colegial LTDA" value="2"/>
+                            { this.state.dataSourceEmpresas.map((item, key8)=>(
+                                <Picker.Item label={item.nomeFantEmpresa} value={item.idEmpresa} key={key8} />)
+
+                            )}
+
 
                         </Picker>
 
@@ -382,18 +788,24 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Selecione a Conta Contábil:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue10}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue10:itemValue})}
+                            selectedValue={this.state.idContaContabilSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idContaContabilSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione a Conta Contábil" value="0"/>
-                            <Picker.Item label="Mobiliário em Geral (10.3456.234.22)" value="1"/>
-                            <Picker.Item label="Móveis e Utensilios Domésticos (10.222.222.22)" value="2"/>
+                            { this.state.dataSourceContasContabeis.map((item, key9)=>(
+                                <Picker.Item label={item.descricaoContaContabil} value={item.idContaContabil} key={key9} />)
+                            )}
 
                         </Picker>
 
@@ -405,18 +817,24 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Selecione o Tipo de Aquisição:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue11}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue11:itemValue})}
+                            selectedValue={this.state.idTipoAquisicaoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idTipoAquisicaoSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o Tipo de Aquisição" value="0"/>
-                            <Picker.Item label="Comprado" value="1"/>
-                            <Picker.Item label="Doado" value="2"/>
+                            { this.state.dataSourceTiposAquisicao.map((item, key10)=>(
+                                <Picker.Item label={item.descricaoTipoAquisicao} value={item.idTipoAquisicao} key={key10} />)
+                            )}
 
                         </Picker>
 
@@ -428,19 +846,23 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+                    <Text style={styles.labelCampos}>
+                        Selecione o Tipo de Incorporação:
+                    </Text>
+
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
                             style={styles.pickerStyle}
-                            selectedValue={this.state.PickerValue12}
-                            onValueChange={(itemValue, itemIndex) => this.setState({PickerValue12:itemValue})}
+                            selectedValue={this.state.idTipoIncorporacaoSelecionado}
+                            onValueChange={(itemValue, itemIndex) => this.setState({idTipoIncorporacaoSelecionado:itemValue})}
                             borderColor
 
                         >
-                            <Picker.Item label="Selecione o Tipo de Incorporação" value="0"/>
-                            <Picker.Item label="Transferência Recebida" value="1"/>
-                            <Picker.Item label="Doação de Instituições Públicas" value="2"/>
-                            <Picker.Item label="Compra Direta" value="3 - Veículos"/>
+                            { this.state.dataSourceTiposIncorporacao.map((item, key11)=>(
+                                <Picker.Item label={item.descricaoTipoIncorporacao} value={item.idTipoIncorporacao} key={key11} />)
+                            )}
 
                         </Picker>
 
@@ -457,6 +879,12 @@ export default class CadastroBem extends Component {
 
 
                 <Panel title="Dados do Veículo">
+
+                    <Text style={styles.labelCampos}>
+                        Informe Número do Documento:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
@@ -472,6 +900,12 @@ export default class CadastroBem extends Component {
                         </View>
 
                     </View>
+
+
+                    <Text style={styles.labelCampos}>
+                        Informe o Modelo:
+                    </Text>
+
 
                     <View style={styles.bordaInput}>
 
@@ -489,6 +923,10 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+                    <Text style={styles.labelCampos}>
+                        Selecione o Tipo de Combustível:
+                    </Text>
+
                     <View style={styles.pickerBorder}>
 
                         <Picker
@@ -498,7 +936,6 @@ export default class CadastroBem extends Component {
                             borderColor
 
                         >
-                            <Picker.Item label="Tipo de Combustível" value="0"/>
                             <Picker.Item label="Gasolina" value="1"/>
                             <Picker.Item label="Álcool" value="2"/>
                             <Picker.Item label="Diesel" value="3"/>
@@ -512,6 +949,12 @@ export default class CadastroBem extends Component {
                         </View>
 
                     </View>
+
+
+                    <Text style={styles.labelCampos}>
+                        Informe a Marca:
+                    </Text>
+
 
                     <View style={styles.bordaInput}>
 
@@ -529,6 +972,12 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+
+                    <Text style={styles.labelCampos}>
+                        Informe o Ano:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
@@ -545,6 +994,11 @@ export default class CadastroBem extends Component {
 
                     </View>
 
+                    <Text style={styles.labelCampos}>
+                        Informe o Chassi:
+                    </Text>
+
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
@@ -560,6 +1014,10 @@ export default class CadastroBem extends Component {
                         </View>
 
                     </View>
+
+                    <Text style={styles.labelCampos}>
+                        Informe a Placa:
+                    </Text>
 
                     <View style={styles.bordaInput}>
 
@@ -579,13 +1037,18 @@ export default class CadastroBem extends Component {
                 </Panel>
 
 
-
                 <Panel title="Observações">
+
+                    <Text style={styles.labelCampos}>
+                         Opcional:
+                    </Text>
+
                     <View style={styles.bordaInput}>
 
                         <TextInput
+                            value={this.state.observacoesBem}
                             style={styles.input}
-                            placeholder="Informe Possíveis Observações"
+                            placeholder="Observações"
                             placeholderTextColor="#000"
                         />
 
@@ -643,9 +1106,16 @@ var styles = StyleSheet.create({
 
     },
 
+    labelCampos:{
+
+        marginTop: 18, //espacamento entre componntes do grid
+        fontSize: 16,
+        fontWeight:'bold',
+    },
+
     pickerBorder:{
         //flex:1,
-        marginTop: 20,
+        marginTop: 10,
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row', //Alinhamento dos icones de status
@@ -668,7 +1138,7 @@ var styles = StyleSheet.create({
 
     bordaInput:{
 
-        marginTop: 20,
+        marginTop: 10,
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row',

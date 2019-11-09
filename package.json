@@ -11,6 +11,7 @@
     "postinstall": "npx jetify"
   },
   "dependencies": {
+    "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.2",
     "react-native-datepicker": "^1.7.2",

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Picker, AppRegistry, Platform, ActivityIndicator, Alert, AsyncStorage } from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, AppRegistry, Picker,  Platform, ActivityIndicator, Alert, AsyncStorage } from "react-native";
 import Api from '../services/Api';
+//import {Picker} from "native-base";
 
 //http://jsonplaceholder.typicode.com/users = API de Testes
 
@@ -134,13 +135,12 @@ export default class SelecaoFundoPublico extends Component {
                     <View style={styles.pickerBorder}>
 
                          <Picker
+
                             style={styles.pickerStyle}
                             selectedValue={this.state.idFundoSelecionado}
                             onValueChange={(itemValue, itemIndex) => this.setState({idFundoSelecionado:itemValue})}
                             borderColor
-
                          >
-
                              { this.state.dataSource.map((item, key)=>(
                                  <Picker.Item label={item.siglaFundo  + ' - ' + item.nomeFundo} value={item.idFundo} key={key} />)
                              )}
