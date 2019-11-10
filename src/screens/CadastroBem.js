@@ -391,10 +391,19 @@ export default class CadastroBem extends Component {
             idSecretaria: this.state.idSecretariaSelecionado,
 
         }).then(function (response) {
-              console.log('Salvo com Sucesso!' + response);
-            }
+
+              console.log(response.data);
+
+              if(response.status === 200){
+
+                  alert("Bem salvo com sucesso!");
+
+              } else {
+                  alert("Erro ao salvar bem! Tente novamente ou contacte o suporte!");
+              }
+           }
         ).catch(function (error) {
-             console.log('Erro ao Salvar!' + error);
+             alert('Erro na comunicação com a base de dados! Tente novamente ou contacte o suporte!');
         });
     }
 
@@ -1073,7 +1082,7 @@ export default class CadastroBem extends Component {
                     </View>
 
                     <Text style={styles.labelCampos}>
-                        Informe o Chassi:
+                        Chassi:
                     </Text>
 
 
@@ -1081,7 +1090,7 @@ export default class CadastroBem extends Component {
 
                         <TextInput
                             style={styles.input}
-                            placeholder="Chassi"
+                            placeholder="Informe"
                             placeholderTextColor="#000"
                         />
 
