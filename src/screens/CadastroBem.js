@@ -67,6 +67,8 @@ export default class CadastroBem extends Component {
 
         let dadosFormulario = new CadastroBemServices();
 
+
+        this.setState({dataSourceIDUsuario: await dadosFormulario.loadIDUsuarioLogado()});
         this.setState({dataSourceIDFundo: await dadosFormulario.loadIdFundoSelecionado()});
         this.setState({dataSourceIDTipoBem: await dadosFormulario.loadIdTipoBemSelecionado()});
         this.setState({dataSourceSubElementos: await dadosFormulario.loadSubElementos()});

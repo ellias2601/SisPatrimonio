@@ -4,6 +4,17 @@ import {AsyncStorage} from "react-native";
 
 export default class CadastroBemServices extends Component {
 
+    loadIDUsuarioLogado = async () => {
+
+        let idUsuarioJSON = await AsyncStorage.getItem('idUsuario');
+        var idUsuarioString = JSON.parse(idUsuarioJSON);
+
+
+        console.log('ID Usuario Logado: ' + idUsuarioString);
+
+        return idUsuarioString;
+    };
+
     loadIdFundoSelecionado = async () => {
 
         let idFundoJSON = await AsyncStorage.getItem('idFundo');
@@ -201,7 +212,7 @@ export default class CadastroBemServices extends Component {
             numeroAntigoBem: state.numeroAntigoBem,
             observaçõesBem: state.observacoesBem,
             qtdACadastrarBem: state.qtdACadastrarBem,
-            idUsuario: '1',
+            idUsuario: state.dataSourceIDUsuario,
             idFundo: state.dataSourceIDFundo,
             idTipoBem: state.dataSourceIDTipoBem,
             idSubElemento: state.idSubElementoSelecionado,

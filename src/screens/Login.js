@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, Image, Text, TextInput, TouchableOpacity, View, StyleSheet, AsyncStorage} from "react-native";
 import Api from "../services/Api";
+import LoginServices from "../services/LoginServices";
 
 
 export default class Login extends Component{
@@ -15,35 +16,6 @@ export default class Login extends Component{
         }
 
     }
-
-    clicou = async () => {
-
-        console.log('Checando Dados Login');
-
-        let url = '/login/' + this.state.cpf + '/' + this.state.senha;
-
-        const responseDadosUsuario = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseDadosUsuario.data);
-        //console.log(responseDadosUsuario.data[0].nomeUsuario);
-
-
-        if(responseDadosUsuario.data.length === 0 ) {
-            alert('Dados Incorretos, Tente Novamente!');
-
-        } else{
-
-            //await AsyncStorage.setItem('dataSourceIDUsuario',  JSON.stringify(responseDadosUsuario.data[0].idUsuario));
-            //await AsyncStorage.setItem('dataSourceNomeUsuario',  JSON.stringify(responseDadosUsuario.data[0].nomeUsuario));
-            //let value = AsyncStorage.getItem('dataSourceIDUsuario');
-            //alert (JSON.parse(value));
-
-            this.props.navigation.navigate('MenuPrincipal')
-        }
-
-    };
-
 
     render() {
         return (
@@ -76,7 +48,7 @@ export default class Login extends Component{
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            this.clicou()
+                            LoginServices.login(this.state, this.props)
 
                         }}
                     >

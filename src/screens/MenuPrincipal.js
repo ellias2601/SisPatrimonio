@@ -40,6 +40,7 @@ export default class MenuPrincipal extends Component {
     };
 
     componentDidMount () {
+
         this.props.navigation.setParams({ logout: this.desconectar });
     }
 
@@ -49,7 +50,7 @@ export default class MenuPrincipal extends Component {
             <View style={styles.container}>
 
                 <Text
-                    style={styles.textoBemVindo}>Bem-vindo ao SisPatrimônio, Ellias!
+                    style={styles.textoBemVindo}>Bem-vindo(a) ao SisPatrimônio, {this.props.navigation.state.params.nomeUsuario}!
                 </Text>
 
                 <Text
