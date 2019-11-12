@@ -82,6 +82,8 @@ INSERT INTO SubDestino(nomeSubDestino,idDestino) VALUES ('Coordenação', 2);
 
 INSERT INTO SubDestino(nomeSubDestino,idDestino) VALUES ('Sala de Vacina', 1);
 
+INSERT INTO SubDestino(nomeSubDestino,idDestino) VALUES ('Sala de Prevenção', 1);
+
 INSERT INTO Bem (dataCadastroBem, descricaoBem, valorBem, numeroAtualBem, numeroAntigoBem, observaçõesBem, qtdACadastrarBem, idUsuario, idFundo, idTipoBem, idSubElemento, idClassificacao, idEstadoBem, idEmpresa, idResponsavel, idOrigem, idDestino, idSubDestino, idContaContabil, idTipoAquisicao, idTipoIncorporacao, idSecretaria) VALUES ('2019-12-12', 'Cadeira Fixa Almofadada', 5000.00, 023345, 012345, 'Recepção, Atrás do Balcão', '2', 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 1);
 
 

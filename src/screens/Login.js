@@ -1,11 +1,49 @@
 import React, {Component} from 'react';
-import {Alert, Image, Text, TextInput, TouchableOpacity, View, StyleSheet} from "react-native";
+import {Alert, Image, Text, TextInput, TouchableOpacity, View, StyleSheet, AsyncStorage} from "react-native";
+import Api from "../services/Api";
+
 
 export default class Login extends Component{
 
-    clicou = () => {
-        Alert.alert("Em desenvolvimento", "A ser implementado")
+    constructor(props){
+
+        super(props);
+
+        this.state = {
+            cpf: '',
+            senha: '',
+        }
+
+    }
+
+    clicou = async () => {
+
+        console.log('Checando Dados Login');
+
+        let url = '/login/' + this.state.cpf + '/' + this.state.senha;
+
+        const responseDadosUsuario = await Api.get(url);
+
+        //Apresenta no console o JSON obtido como resposta!
+        console.log(responseDadosUsuario.data);
+        //console.log(responseDadosUsuario.data[0].nomeUsuario);
+
+
+        if(responseDadosUsuario.data.length === 0 ) {
+            alert('Dados Incorretos, Tente Novamente!');
+
+        } else{
+
+            //await AsyncStorage.setItem('dataSourceIDUsuario',  JSON.stringify(responseDadosUsuario.data[0].idUsuario));
+            //await AsyncStorage.setItem('dataSourceNomeUsuario',  JSON.stringify(responseDadosUsuario.data[0].nomeUsuario));
+            //let value = AsyncStorage.getItem('dataSourceIDUsuario');
+            //alert (JSON.parse(value));
+
+            this.props.navigation.navigate('MenuPrincipal')
+        }
+
     };
+
 
     render() {
         return (
@@ -22,19 +60,24 @@ export default class Login extends Component{
                     <TextInput
                         style={styles.input}
                         placeholder="CPF"
+                        onChangeText={(value) => this.setState({cpf:value})}
+                        value={this.state.cpf}
+                        autoCapitalize="none"
                     />
 
                     <TextInput
                         style={styles.input}
                         secureTextEntry={true}
                         placeholder="Digite sua senha"
+                        onChangeText={(value) => this.setState({senha:value})}
+                        value={this.state.senha}
                     />
 
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            //this.clicou()
-                            this.props.navigation.navigate('MenuPrincipal')
+                            this.clicou()
+
                         }}
                     >
                         <Text style={styles.botaoText}>ACESSAR</Text>

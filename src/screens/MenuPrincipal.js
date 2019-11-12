@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Image, AsyncStorage} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export default class MenuPrincipal extends Component {
@@ -20,9 +20,7 @@ export default class MenuPrincipal extends Component {
          headerRight: (
             <TouchableOpacity
                 //title={logout}
-                onPress={() => {
-                    navigation.navigate('Login')
-                }}
+                onPress={navigation.getParam('logout')}
                 style={{margin:18}}
             >
                 <Ionicons name={"md-power"} size={30} width={100} height={100} color={"black"}/>
@@ -30,6 +28,20 @@ export default class MenuPrincipal extends Component {
             </TouchableOpacity>
         ),
     });
+
+     desconectar = async () => {
+
+         //Limpa os dados armazenados em AsyncStorage ao realizar Logout
+         await AsyncStorage.clear();
+
+         //Retorna a tela de login
+         this.props.navigation.navigate('Login')
+
+    };
+
+    componentDidMount () {
+        this.props.navigation.setParams({ logout: this.desconectar });
+    }
 
 
     render () {
