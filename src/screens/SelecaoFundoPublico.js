@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, AppRegistry, Picker,  Platform, ActivityIndicator, Alert, AsyncStorage } from "react-native";
-import Api from '../services/Api';
-//import {Picker} from "native-base";
+import {Text, TouchableOpacity, View, StyleSheet,  Picker, ActivityIndicator, AsyncStorage } from "react-native";
+import SelecaoFundoPublicoServices from "../services/SelecaoFundoPublicoServices";
+
 
 //http://jsonplaceholder.typicode.com/users = API de Testes
 
@@ -37,62 +37,16 @@ export default class SelecaoFundoPublico extends Component {
 
     //Carrega dados da API ao renderizar a interface
 
-    componentDidMount() {
+    async componentDidMount() {
 
-        this.loadItens();
+        let dadosFundoPublico = new SelecaoFundoPublicoServices();
+
+        this.setState({dataSource: await dadosFundoPublico.loadFundosPublicos()});
+        this.setState({isLoading: false});
+
     }
 
-    // Carrega dados da API, conforme solicitação URL
 
-    loadItens = async () => {
-
-        console.log('Carregando Fundos');
-        const response = await Api.get('/fundos');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(response.data);
-
-        this.setState({
-            isLoading: false,
-            dataSource: response.data
-        }, function() {
-            // Callback
-        });
-
-    };
-
-     //função responsável por armazenar o id do fundo selecionado na sessão do usuário
-     //e prosseguir o processo de cadastro.
-
-     prosseguir =() =>{
-
-         //recebe o id do fundo selecionado pelo usuário
-         const idRec = this.state.idFundoSelecionado;
-
-         //o usuario pode selecionar outro fundo voltando a tela, portanto:
-         try {
-
-             let value = AsyncStorage.getItem('idFundo');
-
-             //verifica se algum fundo ja foi selecionado pelo usuário na atual sessão
-             //se sim, remove o id da antiga seleção e insere o id respectivo ao novo fundo escolhido, para posterior utilização
-             //se não, insere o id do fundo selecionado para posterior utilização
-
-             if (value != null) {
-                AsyncStorage.removeItem('idFundo'); }
-
-              AsyncStorage.setItem('idFundo',  JSON.stringify(idRec));
-
-         } catch (error) {
-
-            alert('Falha no processo de cadastro, entre em contato com o suporte técnico! ID: SELECFUNDOS');
-        }
-
-        //this.displayData();
-
-        //redireciona o usuário para a próxima tela
-        this.props.navigation.navigate('SelecaoTipoBem')
-    }
 
     displayData = async () => {
         try{
@@ -153,7 +107,7 @@ export default class SelecaoFundoPublico extends Component {
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            this.prosseguir()
+                            SelecaoFundoPublicoServices.prosseguir(this.state, this.props);
                         }}
                     >
                         <Text style={styles.botaoText}>PROSSEGUIR</Text>

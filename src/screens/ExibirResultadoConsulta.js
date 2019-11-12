@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ScrollView, ActivityIndicator} from "react-native";
 import Api from '../services/Api';
+import ExibirResultadoConsultaServices from "../services/ExibirResultadoConsultaServices";
 
 export default class ExibirResutadoConsulta extends Component {
 
@@ -31,36 +32,20 @@ export default class ExibirResutadoConsulta extends Component {
 
     //Carrega dados da API ao renderizar a interface
 
-    componentDidMount() {
+    async componentDidMount() {
 
+        //recebe o numero do bem informado pelo usuario
         let numeroPatrimonio = this.props.navigation.state.params.numeroBem;
 
-        this.loadItens(numeroPatrimonio);
+        //instancia webservice para consulta
+        let dadosBem = new ExibirResultadoConsultaServices();
 
+        //realiza consulta por numero de patrimonio e devolve JSON
+        this.setState({dataSource: await dadosBem.loadDadosBem(numeroPatrimonio)});
+
+        //remove o spinner da tela apos carregamento
+        this.setState({isLoading: false});
     }
-
-    // Carrega dados da API, conforme solicitação URL
-
-    loadItens = async (numeroPatrimonio) => {
-
-        console.log('Carregando Dados do Bem Informado');
-
-        let url = '/consultaPorNumeroPatrimonio/' + numeroPatrimonio;
-
-
-        const response = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(response.data);
-
-        this.setState({
-            isLoading: false,
-            dataSource: response.data
-        }, function() {
-            // Callback
-        });
-
-    };
 
     clicou =() =>{
 

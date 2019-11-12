@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker, ActivityIndicator, AsyncStorage} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker, ActivityIndicator} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Panel from "../components/Panel";
 import DatePicker from 'react-native-datepicker';
-import Api from '../services/Api';
+import CadastroBemServices from "../services/CadastroBemServices";
 
 console.disableYellowBox = true;
 
@@ -65,349 +65,26 @@ export default class CadastroBem extends Component {
 
     async componentDidMount() {
 
-        await this.loadIdFundoSelecionado();
-        await this.loadIdTipoBemSelecionado();
+        let dadosFormulario = new CadastroBemServices();
 
-        await this.loadSubElementos();
-        await this.loadClassificacoes();
-        await this.loadEstadosBem();
-        await this.loadResponsaveis();
-        await this.loadSecretariasPorFundo();
-        await this.loadOrigensPorFundo();
-        await this.loadDestinosPorFundo();
-        await this.loadSubDestinosPorFundo();
-        await this.loadEmpresas();
-        await this.loadContasContabeis();
-        await this.loadTiposAquisicao();
-        await this.loadTiposIncorporacao();
-
-    }
-
-    loadIdFundoSelecionado = async () => {
-
-        let idFundoJSON = await AsyncStorage.getItem('idFundo');
-        var idFundoString = JSON.parse(idFundoJSON);
-
-
-        //console.log('ID Fundo Selecionado: ' + idFundoString);
-
-        this.setState({
-            dataSourceIDFundo: idFundoString,
-
-        }, function() {
-            // Callback
-            //console.log('ID Fundo Selecionado: ' + this.state.dataSourceIDFundo)
-        });
-
+        this.setState({dataSourceIDFundo: await dadosFormulario.loadIdFundoSelecionado()});
+        this.setState({dataSourceIDTipoBem: await dadosFormulario.loadIdTipoBemSelecionado()});
+        this.setState({dataSourceSubElementos: await dadosFormulario.loadSubElementos()});
+        this.setState({dataSourceClassificacoes: await dadosFormulario.loadClassificacoes()});
+        this.setState({dataSourceEstadosBem: await dadosFormulario.loadEstadosBem()});
+        this.setState({dataSourceResponsaveis: await dadosFormulario.loadResponsaveis()});
+        this.setState({dataSourceSecretarias: await dadosFormulario.loadSecretariasPorFundo(this.state)});
+        this.setState({dataSourceOrigens: await dadosFormulario.loadOrigensPorFundo(this.state)});
+        this.setState({dataSourceDestinos: await dadosFormulario.loadDestinosPorFundo(this.state)});
+        this.setState({dataSourceSubDestinos: await dadosFormulario.loadSubDestinosPorFundo(this.state)});
+        this.setState({dataSourceEmpresas: await dadosFormulario.loadEmpresas()});
+        this.setState({dataSourceContasContabeis: await dadosFormulario.loadContasContabeis()});
+        this.setState({dataSourceResponsaveis: await dadosFormulario.loadResponsaveis()});
+        this.setState({dataSourceTiposAquisicao: await dadosFormulario.loadTiposAquisicao()});
+        this.setState({dataSourceTiposIncorporacao: await dadosFormulario.loadTiposIncorporacao()});
+        this.setState({isLoading: false});
 
     }
-
-    loadIdTipoBemSelecionado = async () => {
-
-        let idTipoBemJSON = await AsyncStorage.getItem('idTipoBemSelecionado');
-        var idTipoBemString = JSON.parse(idTipoBemJSON);
-
-
-        //console.log('ID Fundo Selecionado: ' + idFundoString);
-
-        this.setState({
-            dataSourceIDTipoBem: idTipoBemString,
-
-        }, function() {
-            // Callback
-            //console.log('ID Fundo Selecionado: ' + this.state.dataSourceIDFundo)
-        });
-
-
-    }
-
-    // Carrega dados da API, conforme solicitação URL
-
-    loadSubElementos = async () => {
-
-        console.log('Carregando SubElementos');
-        const responseSubElementos = await Api.get('/subElementos');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseSubElementos.data);
-
-        this.setState({
-            dataSourceSubElementos: responseSubElementos.data,
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadClassificacoes = async () => {
-
-        console.log('Carregando Classificações');
-        const responseClassificacoes = await Api.get('/classificacoes');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseClassificacoes.data);
-
-        this.setState({
-
-            dataSourceClassificacoes: responseClassificacoes.data,
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadEstadosBem = async () => {
-
-        console.log('Carregando Estados Bem');
-        const responseEstadosBem = await Api.get('/estadosBem');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseEstadosBem.data);
-
-        this.setState({
-
-            dataSourceEstadosBem: responseEstadosBem.data,
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadResponsaveis = async () => {
-
-        console.log('Carregando Reponsaveis');
-        const responseResponsaveis= await Api.get('/responsaveis');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseResponsaveis.data);
-
-        this.setState({
-            dataSourceResponsaveis: responseResponsaveis.data,
-
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadSecretariasPorFundo = async () => {
-
-        console.log('Carregando Dados da Secretaria conforme Fundo');
-
-        let url = '/secretariasPorFundo/' + this.state.dataSourceIDFundo;
-
-        const responseSecretarias = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseSecretarias.data);
-
-        this.setState({
-
-            dataSourceSecretarias: responseSecretarias.data,
-
-        }, function() {
-
-        });
-
-    };
-
-    loadOrigensPorFundo = async () => {
-
-        console.log('Carregando Dados da Origem conforme Fundo');
-
-        let url = '/origensPorFundo/' + this.state.dataSourceIDFundo;
-
-        const responseOrigens = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseOrigens.data);
-
-        this.setState({
-
-            dataSourceOrigens: responseOrigens.data,
-
-        }, function() {
-
-        });
-
-    };
-
-    loadDestinosPorFundo = async () => {
-
-        console.log('Carregando Dados do Destino conforme Fundo');
-
-        let url = '/destinosPorFundo/' + this.state.dataSourceIDFundo;
-
-        const responseDestinos = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseDestinos.data);
-
-        this.setState({
-
-            dataSourceDestinos: responseDestinos.data,
-
-
-        }, function() {
-
-        });
-
-    };
-
-    loadSubDestinosPorFundo = async () => {
-
-        console.log('Carregando Dados do SubDestino conforme Fundo');
-
-        let url = '/subDestinosPorFundo/' + this.state.dataSourceIDFundo;
-
-        const responseSubDestinos = await Api.get(url);
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseSubDestinos.data);
-
-        this.setState({
-
-            dataSourceSubDestinos: responseSubDestinos.data,
-
-
-        }, function() {
-
-        });
-
-    };
-
-    loadEmpresas = async () => {
-
-        console.log('Carregando Empresas');
-        const responseEmpresas= await Api.get('/empresas');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseEmpresas.data);
-
-        this.setState({
-
-            dataSourceEmpresas: responseEmpresas.data,
-
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadContasContabeis = async () => {
-
-        console.log('Carregando Contas Contabeis');
-        const responseContasContabeis= await Api.get('/contascontabeis');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseContasContabeis.data);
-
-        this.setState({
-
-            dataSourceContasContabeis: responseContasContabeis.data,
-
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadTiposAquisicao = async () => {
-
-        console.log('Carregando Tipos Aquisicao');
-        const responseTiposAquisicao= await Api.get('/tiposaquisicao');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseTiposAquisicao.data);
-
-        this.setState({
-
-            dataSourceTiposAquisicao: responseTiposAquisicao.data,
-
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    loadTiposIncorporacao = async () => {
-
-        console.log('Carregando Tipos Incorporacao');
-        const responseTiposIncorporacao= await Api.get('/tiposincorporacao');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseTiposIncorporacao.data);
-
-        this.setState({
-
-            dataSourceTiposIncorporacao: responseTiposIncorporacao.data,
-            isLoading:false,
-
-
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    concluir = async () =>{
-
-        console.log('Salvando No BD!');
-
-        await Api.post('/salvarCadastro', {
-            dataCadastroBem: this.state.date,
-            descricaoBem: this.state.descricaoBem,
-            valorBem: this.state.valorBem,
-            numeroAtualBem: this.state.numeroAtualBem,
-            numeroAntigoBem: this.state.numeroAntigoBem,
-            observaçõesBem: this.state.observacoesBem,
-            qtdACadastrarBem: this.state.qtdACadastrarBem,
-            idUsuario: '1',
-            idFundo: this.state.dataSourceIDFundo,
-            idTipoBem: this.state.dataSourceIDTipoBem,
-            idSubElemento: this.state.idSubElementoSelecionado,
-            idClassificacao: this.state.idClassificacaoSelecionado,
-            idEstadoBem: this.state.idEstadoBemSelecionado,
-            idEmpresa: this.state.idEmpresaSelecionado,
-            idResponsavel: this.state.idResponsavelSelecionado,
-            idOrigem: this.state.idOrigemSelecionado,
-            idDestino: this.state.idDestinoSelecionado,
-            idSubDestino: this.state.idSubDestinoSelecionado,
-            idContaContabil: this.state.idContaContabilSelecionado,
-            idTipoAquisicao: this.state.idTipoAquisicaoSelecionado,
-            idTipoIncorporacao: this.state.idTipoIncorporacaoSelecionado,
-            idSecretaria: this.state.idSecretariaSelecionado,
-
-        }).then(function (response) {
-
-              console.log(response.data);
-
-              if(response.status === 200){
-
-                  alert("Bem salvo com sucesso!");
-
-              } else {
-                  alert("Erro ao salvar bem! Tente novamente ou contacte o suporte!");
-              }
-           }
-        ).catch(function (error) {
-             alert('Erro na comunicação com a base de dados! Tente novamente ou contacte o suporte!');
-        });
-    }
-
-
 
     render() {
 
@@ -1156,7 +833,7 @@ export default class CadastroBem extends Component {
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            this.concluir()
+                            CadastroBemServices.concluir(this.state)
                             //this.props.navigation.navigate('SelecaoFundoPublico')
                         }}
                     >
@@ -1171,7 +848,6 @@ export default class CadastroBem extends Component {
     }
 
 }
-
 
 var styles = StyleSheet.create({
     container: {
@@ -1280,5 +956,3 @@ var styles = StyleSheet.create({
     }
 
 });
-
-//AppRegistry.registerComponent('Panels', () => Panels);

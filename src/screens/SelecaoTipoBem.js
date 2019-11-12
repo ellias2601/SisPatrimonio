@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Picker, AsyncStorage, ActivityIndicator} from "react-native";
-import Api from "../services/Api";
+import SelecaoTipoBemServices from "../services/SelecaoTipoBemServices";
 
 export default class SelecaoTipoBem extends Component {
 
@@ -34,61 +34,12 @@ export default class SelecaoTipoBem extends Component {
 
     //Carrega dados da API ao renderizar a interface
 
-    componentDidMount() {
+   async componentDidMount() {
 
-        this.loadItens();
-    }
+        let dadosTipoBem = new SelecaoTipoBemServices();
 
-    // Carrega dados da API, conforme solicitação URL
-
-    loadItens = async () => {
-
-        console.log('Carregando Tipos de Bem');
-        const response = await Api.get('/tiposBem');
-
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(response.data);
-
-        this.setState({
-            isLoading: false,
-            dataSource: response.data
-        }, function() {
-            // Callback
-        });
-
-    };
-
-    //função responsável por armazenar o id do fundo selecionado na sessão do usuário
-    //e prosseguir o processo de cadastro.
-
-    prosseguir =() =>{
-
-        //recebe o id do fundo selecionado pelo usuário
-        const tipoBem = this.state.idTipoBemSelecionado;
-
-        //o usuario pode selecionar outro fundo voltando a tela, portanto:
-        try {
-
-            let value = AsyncStorage.getItem('idTipoBemSelecionado');
-
-            //verifica se algum tipo de bem ja foi selecionado pelo usuário na atual sessão
-            //se sim, remove o id da antiga seleção e insere o id respectivo ao novo tipo de bem escolhido, para posterior utilização
-            //se não, insere o id do  tipo de bem selecionado para posterior utilização
-
-            if (value != null) {
-                AsyncStorage.removeItem('idTipoBemSelecionado'); }
-
-            AsyncStorage.setItem('idTipoBemSelecionado',  JSON.stringify(tipoBem));
-
-        } catch (error) {
-
-            alert('Falha no processo de cadastro, entre em contato com o suporte técnico! ID: SELECTIPOBEM');
-        }
-
-        //this.displayData();
-
-        //redireciona o usuário para a próxima tela
-        this.props.navigation.navigate('CadastroBem')
+        this.setState({dataSource: await dadosTipoBem.loadTiposBem()});
+        this.setState({isLoading: false});
     }
 
 
@@ -150,7 +101,7 @@ export default class SelecaoTipoBem extends Component {
                 <TouchableOpacity
                     style={styles.botao}
                     onPress={() => {
-                        this.prosseguir()
+                        SelecaoTipoBemServices.prosseguir(this.state, this.props)
                     }}
                 >
                     <Text style={styles.botaoText}>PROSSEGUIR</Text>
