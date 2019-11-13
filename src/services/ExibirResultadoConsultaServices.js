@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Api from "./Api";
-import {AsyncStorage} from "react-native";
+import {Alert, AsyncStorage} from "react-native";
 
 export default class ExibirResultadoConsultaServices extends Component {
 
@@ -16,10 +16,18 @@ export default class ExibirResultadoConsultaServices extends Component {
 
         const response = await Api.get(url);
 
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(response.data);
+        if(response.data.length === 0 ) {
 
-        return response.data;
+            //Se nao existir bem vinculado ao numero informado pelo usuário, retorna 0 (Bem Nao Cadastrado)
+            return 0;
+
+        } else{
+
+            //Apresenta no console o JSON obtido como resposta!
+            console.log(response.data);
+
+            return response.data;
+        }
 
     };
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, TextInput} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, Image, TextInput, Keyboard} from "react-native";
+import LoginServices from "../services/LoginServices";
 
 export default class Consultas extends Component {
 
@@ -25,9 +26,24 @@ export default class Consultas extends Component {
         headerTintColor: 'black',
     };
 
-    clicou =() =>{
+    validaNumeroBem =() =>{
+
+        //fecha o teclado do dispositivo ao submeter a tela
+        Keyboard.dismiss();
+
+        if(this.state.numeroBem===''){
+
+            this.setState({Error: 'Informe o número do bem!'})
+
+        } else if(isNaN(this.state.numeroBem)){
+            this.setState({Error: 'Informe somente números!'})
+        }
+
+        else{
 
             this.props.navigation.navigate('ExibirResultadoConsulta', {numeroBem: this.state.numeroBem,})
+        }
+
     };
 
     render () {
@@ -42,6 +58,8 @@ export default class Consultas extends Component {
                     style={styles.textoNumeroBem2}>para consulta
                 </Text>
 
+
+
                 <View style={styles.bordaInputNumeroBem}>
 
                 <TextInput
@@ -49,11 +67,16 @@ export default class Consultas extends Component {
                     value={this.state.numeroBem}
                     onChangeText={numeroBem => this.setState({ numeroBem })}
                     style={styles.inputNumeroBem}
-                    onEndEditing={() => {this.clicou()}}
+                    onEndEditing={() => {this.validaNumeroBem()}}
 
                 />
 
                 </View>
+
+                <Text style={styles.textoErro}>
+                    {this.state.Error}
+
+                </Text>
 
                 <Text
                     style={styles.textoOpcao}>ou
@@ -62,7 +85,7 @@ export default class Consultas extends Component {
                 <TouchableOpacity
                     style={styles.botao}
                     onPress={() => {
-                        this.clicou()
+                        this.validaNumeroBem()
 
                     }}
                 >
@@ -101,6 +124,11 @@ const styles = StyleSheet.create({
         height :80,
         fontSize: 23,
         //textAlign: 'center'
+    },
+
+    textoErro:{
+        color: 'red',
+        textAlign: 'center'
     },
 
     bordaInputNumeroBem:{

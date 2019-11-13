@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Image, Text, TextInput, TouchableOpacity, View, StyleSheet, AsyncStorage} from "react-native";
+import {Alert, Image, Text, TextInput, TouchableOpacity, View, StyleSheet, AsyncStorage, Keyboard} from "react-native";
 import Api from "../services/Api";
 import LoginServices from "../services/LoginServices";
 
@@ -17,8 +17,38 @@ export default class Login extends Component{
 
     }
 
+    loginIncorreto = () =>{
+
+        this.setState({Error: 'Usuário ou Senha Incorreto(s)!'})
+
+    };
+
+
+    validaLogin =() =>{
+
+        //fecha o teclado do dispositivo ao submeter a tela
+        Keyboard.dismiss();
+
+        if(this.state.cpf===''){
+            //alert("Por favor, informe seu CPF!");
+            this.setState({Error: 'Por favor, informe seu CPF!'})
+        }
+        else if(this.state.senha===''){
+            //alert("Por favor, informe sua senha!");
+            this.setState({Error: 'Por favor, informe sua senha!'})
+        }
+
+        else{
+           LoginServices.login(this.state, this.props)
+
+        }
+    };
+
+
+
     render() {
         return (
+
 
             <View style={styles.content}>
 
@@ -28,6 +58,11 @@ export default class Login extends Component{
                         source={require('../assets/logo3.png')}
                         style={styles.logo}
                     />
+
+                    <Text style={{color: 'red', textAlign: 'center'}}>
+                        {this.state.Error}
+
+                    </Text>
 
                     <TextInput
                         style={styles.input}
@@ -48,7 +83,8 @@ export default class Login extends Component{
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            LoginServices.login(this.state, this.props)
+                            this.validaLogin()
+                            //LoginServices.login(this.state, this.props)
 
                         }}
                     >

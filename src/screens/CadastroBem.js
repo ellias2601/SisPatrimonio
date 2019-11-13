@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker, ActivityIndicator} from "react-native";
+import {Text, TouchableOpacity, View, StyleSheet, ScrollView, TextInput, Picker, ActivityIndicator, Keyboard, Alert} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Panel from "../components/Panel";
 import DatePicker from 'react-native-datepicker';
@@ -58,6 +58,151 @@ export default class CadastroBem extends Component {
         },
 
         headerTintColor: 'black',
+
+    };
+
+    validaFormularioCadastro =() =>{
+
+        //fecha o teclado do dispositivo ao submeter a tela
+        Keyboard.dismiss();
+
+        if(this.state.idSubElementoSelecionado===''){
+
+            Alert.alert('Aviso', 'SubElemento não selecionado!');
+            this.setState({ErrorSubElemento: '*Obrigatório'})
+
+        }
+
+        else if(this.state.descricaoBem===''){
+
+            Alert.alert('Aviso', 'Descrição não informada!');
+            this.setState({ErrorDescricao: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idClassificacaoSelecionado===''){
+            Alert.alert('Aviso', 'Classificação não selecionada!');
+            this.setState({ErrorClassificacao: '* Obrigatório'})
+
+        }
+
+        else if (isNaN(this.state.valorBem)){
+            Alert.alert('Aviso', 'Informe somente dígitos para o valor do bem!');
+            this.setState({ErrorValorBem: '* Somente dígitos'})
+
+        }
+
+        else if(this.state.valorBem===''){
+            Alert.alert('Aviso', 'Valor do bem não informado!');
+            this.setState({ErrorValorBem: '* Obrigatório'})
+
+        }
+
+        else if(isNaN(this.state.numeroAtualBem)){
+            Alert.alert('Aviso', 'Informe somente dígitos para o número do bem');
+            this.setState({ErrorNumeroBem: '* Somente dígitos'})
+
+        }
+
+        else if(this.state.numeroAtualBem===''){
+            Alert.alert('Aviso', 'Número do bem não informado!');
+            this.setState({ErrorNumeroBem: '* Obrigatório'})
+
+        }
+
+        else if(isNaN(this.state.numeroAntigoBem)){
+            Alert.alert('Aviso', 'Informe somente dígitos para o número do bem anterior');
+            this.setState({ErrorNumeroBemAnterior: '* Somente dígitos'})
+
+        }
+
+        else if(this.state.numeroAntigoBem===''){
+            Alert.alert('Aviso', 'Número do bem anterior não informado!');
+            this.setState({ErrorNumeroBemAnterior: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idEstadoBemSelecionado===''){
+            Alert.alert('Aviso', 'Estado do bem não selecionado!');
+            this.setState({ErrorEstadoBem: '* Obrigatório'})
+
+        }
+
+        else if(isNaN(this.state.qtdACadastrarBem)){
+            Alert.alert('Aviso', 'Informe somente dígitos na quantidade de bens a cadastrar!');
+            this.setState({ErrorQtdCadastrar: '* Somente dígitos'})
+
+        }
+
+        else if(this.state.numeroAntigoBem===''){
+            Alert.alert('Aviso', 'Quantidade de bens a cadastrar não informada!');
+            this.setState({ErrorQtdCadastrar: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idResponsavelSelecionado===''){
+            Alert.alert('Aviso', 'Responsável não selecionado!');
+            this.setState({ErrorResponsavel: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idSecretariaSelecionado===''){
+            Alert.alert('Aviso', 'Secretaria não selecionada!');
+            this.setState({ErrorSecretaria: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idOrigemSelecionado===''){
+            Alert.alert('Aviso', 'Origem não selecionada!');
+            this.setState({ErrorOrigem: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idDestinoSelecionado===''){
+            Alert.alert('Aviso', 'Destino não selecionado!');
+            this.setState({ErrorDestino: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idSubDestinoSelecionado===''){
+            Alert.alert('Aviso', 'SubDestino não selecionado!');
+            this.setState({ErrorSubDestino: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idEmpresaSelecionado===''){
+            Alert.alert('Aviso', 'Empresa não selecionada!');
+            this.setState({ErrorEmpresa: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idContaContabilSelecionado===''){
+            Alert.alert('Aviso', 'Conta contábil não selecionada!');
+            this.setState({ErrorContaContabil: '* Obrigatório'})
+
+        }
+
+        else if(this.state.idTipoAquisicaoSelecionado===''){
+            Alert.alert('Aviso', 'Tipo de aquisição não selecionado!');
+            this.setState({ErrorTipoAquisicao: '* Obrigatório'})
+
+        }
+        else if(this.state.idTipoIncorporacaoSelecionado===''){
+            Alert.alert('Aviso', 'Tipo de incorporação não selecionado!');
+            this.setState({ErrorTipoIncorporacao: '* Obrigatório'})
+
+        }
+
+        else if(this.state.observacoesBem===''){
+            Alert.alert('Aviso', 'Observações não informadas!');
+            this.setState({ErrorObservacao: '* Obrigatório'})
+
+        }
+
+        else{
+
+            CadastroBemServices.concluir(this.state)
+        }
 
     };
 
@@ -143,7 +288,7 @@ export default class CadastroBem extends Component {
                 <Panel title="Identificação do Bem">
 
                     <Text style={styles.labelCampos}>
-                        SubElemento:
+                        SubElemento:  <Text style={styles.textoErro}> {this.state.ErrorSubElemento} </Text>
                     </Text>
 
                     <View style={styles.pickerBorder}>
@@ -173,7 +318,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Descrição do Bem:
+                        Descrição do Bem:  <Text style={styles.textoErro}> {this.state.ErrorDescricao} </Text>
                     </Text>
 
 
@@ -199,9 +344,8 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Classificação:
+                        Classificação: <Text style={styles.textoErro}>{this.state.ErrorClassificacao}</Text>
                     </Text>
-
 
                     <View style={styles.pickerBorder}>
 
@@ -229,9 +373,8 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Valor do Bem:
+                        Valor do Bem: <Text style={styles.textoErro}>{this.state.ErrorValorBem}</Text>
                     </Text>
-
 
                     <View style={styles.bordaInput}>
 
@@ -253,7 +396,7 @@ export default class CadastroBem extends Component {
                     </View>
 
                     <Text style={styles.labelCampos}>
-                        Novo Número do Bem:
+                        Novo Número do Bem:  <Text style={styles.textoErro}> {this.state.ErrorNumeroBem} </Text>
                     </Text>
 
 
@@ -276,7 +419,7 @@ export default class CadastroBem extends Component {
                     </View>
 
                     <Text style={styles.labelCampos}>
-                        Número do Bem Anterior:
+                        Número do Bem Anterior:  <Text style={styles.textoErro}> {this.state.ErrorNumeroBemAnterior} </Text>
                     </Text>
 
                     <View style={styles.bordaInput}>
@@ -300,7 +443,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                         Estado do Bem:
+                         Estado do Bem:  <Text style={styles.textoErro}> {this.state.ErrorEstadoBem} </Text>
                     </Text>
 
 
@@ -331,7 +474,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Quantidade Bens a Cadastrar:
+                        Quantidade Bens a Cadastrar: <Text style={styles.textoErro}> {this.state.ErrorQtdCadastrar} </Text>
                     </Text>
 
 
@@ -361,7 +504,7 @@ export default class CadastroBem extends Component {
                 <Panel title="Dados do Responsável">
 
                     <Text style={styles.labelCampos}>
-                        Responsável:
+                        Responsável:  <Text style={styles.textoErro}> {this.state.ErrorResponsavel} </Text>
                     </Text>
 
                     <View style={styles.pickerBorder}>
@@ -394,7 +537,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Secretaria:
+                        Secretaria:  <Text style={styles.textoErro}> {this.state.ErrorSecretaria} </Text>
                     </Text>
 
 
@@ -425,7 +568,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Origem:
+                        Origem:  <Text style={styles.textoErro}> {this.state.ErrorOrigem} </Text>
                     </Text>
 
 
@@ -455,7 +598,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Destino:
+                        Destino:  <Text style={styles.textoErro}> {this.state.ErrorDestino} </Text>
                     </Text>
 
 
@@ -485,7 +628,7 @@ export default class CadastroBem extends Component {
                     </View>
 
                     <Text style={styles.labelCampos}>
-                        SubDestino:
+                        SubDestino:  <Text style={styles.textoErro}> {this.state.ErrorSubDestino} </Text>
                     </Text>
 
 
@@ -520,7 +663,7 @@ export default class CadastroBem extends Component {
                 <Panel title="Dados Contábeis">
 
                     <Text style={styles.labelCampos}>
-                        Empresa:
+                        Empresa:  <Text style={styles.textoErro}> {this.state.ErrorEmpresa} </Text>
                     </Text>
 
 
@@ -552,7 +695,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Conta Contábil:
+                        Conta Contábil:  <Text style={styles.textoErro}> {this.state.ErrorContaContabil} </Text>
                     </Text>
 
 
@@ -582,7 +725,7 @@ export default class CadastroBem extends Component {
 
 
                     <Text style={styles.labelCampos}>
-                        Tipo de Aquisição:
+                        Tipo de Aquisição:  <Text style={styles.textoErro}> {this.state.ErrorTipoAquisicao} </Text>
                     </Text>
 
 
@@ -611,7 +754,7 @@ export default class CadastroBem extends Component {
                     </View>
 
                     <Text style={styles.labelCampos}>
-                        Tipo de Incorporação:
+                        Tipo de Incorporação:  <Text style={styles.textoErro}> {this.state.ErrorTipoIncorporacao} </Text>
                     </Text>
 
 
@@ -806,7 +949,7 @@ export default class CadastroBem extends Component {
                 <Panel title="Observações">
 
                     <Text style={styles.labelCampos}>
-                         Opcional:
+                         Opcional:  <Text style={styles.textoErro}> {this.state.ErrorObservacao} </Text>
                     </Text>
 
                     <View style={styles.bordaInput}>
@@ -835,7 +978,8 @@ export default class CadastroBem extends Component {
                     <TouchableOpacity
                         style={styles.botao}
                         onPress={() => {
-                            CadastroBemServices.concluir(this.state)
+                            this.validaFormularioCadastro();
+                            //CadastroBemServices.concluir(this.state)
                             //this.props.navigation.navigate('SelecaoFundoPublico')
                         }}
                     >
@@ -955,6 +1099,11 @@ var styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: '#545454'
-    }
+    },
+
+    textoErro:{
+        color: 'red',
+        //textAlign: 'center'
+    },
 
 });

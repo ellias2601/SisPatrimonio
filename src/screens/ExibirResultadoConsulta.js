@@ -45,6 +45,7 @@ export default class ExibirResutadoConsulta extends Component {
 
         //remove o spinner da tela apos carregamento
         this.setState({isLoading: false});
+
     }
 
     clicou =() =>{
@@ -57,185 +58,182 @@ export default class ExibirResutadoConsulta extends Component {
         if (this.state.isLoading) {
             return (
                 <View style={{flex: 1, paddingTop: 20}}>
-                    <ActivityIndicator />
+                    <ActivityIndicator/>
                 </View>
             );
         }
 
-        return(
-            <View style={styles.container}>
+        if (this.state.dataSource === 0) {
+            return(
 
-                <ScrollView>
+                <Text style={styles.bemNaoCadastrado}>
+                    Este bem ainda não possui cadastro no sistema!
+                </Text>
 
-                    <Text
-                        style={styles.tituloInformacaoTopo}>Subelemento:
-                    </Text>
+            );
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSubElemento}
-                    </Text>
+        } else {
 
 
+            return (
+                <View style={styles.container}>
 
-                     <Text
-                        style={styles.tituloInformacao}>Descrição do Bem:
-                     </Text>
+                    <ScrollView>
 
-                     <Text
-                         style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoBem}
-                     </Text>
+                        <Text
+                            style={styles.tituloInformacaoTopo}>Subelemento:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSubElemento}
+                        </Text>
 
 
-                     <Text
-                         style={styles.tituloInformacao}>Classificação:
-                     </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Descrição do Bem:
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeClassificacao}
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoBem}
+                        </Text>
 
 
+                        <Text
+                            style={styles.tituloInformacao}>Classificação:
+                        </Text>
 
-                    <Text
-                         style={styles.tituloInformacao}>Valor do Bem:
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeClassificacao}
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>R$ {this.state.dataSource[0].valorBem}
-                    </Text>
 
+                        <Text
+                            style={styles.tituloInformacao}>Valor do Bem:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>R$ {this.state.dataSource[0].valorBem}
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Número do Bem Anterior (P.A):
-                     </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].numeroAntigoBem}
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Número do Bem Anterior (P.A):
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].numeroAntigoBem}
+                        </Text>
 
 
-                    <Text
-                        style={styles.tituloInformacao}>Estado do Bem:
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Estado do Bem:
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeEstadoBem}
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeEstadoBem}
+                        </Text>
 
 
+                        <Text
+                            style={styles.tituloInformacao}>Responsável:
+                        </Text>
 
-                     <Text
-                        style={styles.tituloInformacao}>Responsável:
-                     </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeResponsavel} {this.state.dataSource[0].sobrenomeResponsavel}
+                        </Text>
 
-                     <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeResponsavel} {this.state.dataSource[0].sobrenomeResponsavel}
-                     </Text>
 
+                        <Text
+                            style={styles.tituloInformacao}>Secretaria:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSecretaria}
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Secretaria:
-                    </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoSecretaria}
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Origem:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoOrigem}
+                        </Text>
 
 
-                    <Text
-                        style={styles.tituloInformacao}>Origem:
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Destino:
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoOrigem}
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeDestino}
+                        </Text>
 
 
+                        <Text
+                            style={styles.tituloInformacao}>Subdestino:
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Destino:
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeSubDestino}
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeDestino}
-                    </Text>
 
+                        <Text
+                            style={styles.tituloInformacao}>Empresa:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeFantEmpresa}
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Subdestino:
-                    </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeSubDestino}
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Conta Contábil:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoContaContabil}
+                        </Text>
 
 
-                    <Text
-                        style={styles.tituloInformacao}>Empresa:
-                    </Text>
+                        <Text
+                            style={styles.tituloInformacao}>Tipo de Aquisição:
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].nomeFantEmpresa}
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoAquisicao}
+                        </Text>
 
 
+                        <Text
+                            style={styles.tituloInformacao}>Tipo de Incorporação:
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Conta Contábil:
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoIncorporacao}
+                        </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoContaContabil}
-                    </Text>
 
+                        <Text
+                            style={styles.tituloInformacao}>Observações:
+                        </Text>
 
+                        <Text
+                            style={styles.conteudoInformacao}>{this.state.dataSource[0].observaçõesBem}
+                        </Text>
 
-                    <Text
-                        style={styles.tituloInformacao}>Tipo de Aquisição:
-                    </Text>
 
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoAquisicao}
-                    </Text>
+                        <Text
+                            style={styles.conteudoInformacao}>
+                        </Text>
 
+                    </ScrollView>
 
+                </View>
+            );
 
-                    <Text
-                        style={styles.tituloInformacao}>Tipo de Incorporação:
-                    </Text>
-
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].descricaoTipoIncorporacao}
-                    </Text>
-
-
-
-                    <Text
-                        style={styles.tituloInformacao}>Observações:
-                    </Text>
-
-                    <Text
-                        style={styles.conteudoInformacao}>{this.state.dataSource[0].observaçõesBem}
-                    </Text>
-
-
-
-                    <Text
-                        style={styles.conteudoInformacao}>
-                    </Text>
-
-                </ScrollView>
-
-            </View>
-        );
-
+        }
     }
 }
 
@@ -272,6 +270,15 @@ const styles = StyleSheet.create({
         marginTop: 0,
         marginLeft: 30,
         fontSize: 18,
+
+    },
+
+    bemNaoCadastrado:{
+
+        textAlign:'center',
+        marginTop: 230,
+        height :80,
+        fontSize: 20
 
     },
 });

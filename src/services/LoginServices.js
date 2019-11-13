@@ -1,8 +1,14 @@
 import React, {Component} from 'react';
 import Api from "./Api";
 import {Alert, AsyncStorage} from "react-native";
+import Login from "../screens/Login";
 
 export default class LoginServices extends Component {
+
+    constructor(props){
+        super(props);
+
+    }
 
     static login = async (state, props) => {
 
@@ -18,6 +24,9 @@ export default class LoginServices extends Component {
 
         if(responseDadosUsuario.data.length === 0 ) {
             Alert.alert('Autenticação', 'Usuário ou Senha Incorreto(s)!');
+            //state.setState({Error: 'Usuário ou Senha Incorreto(s)!'})
+            //let loginTeste = new Login();
+            //loginTeste.loginIncorreto();
 
         } else{
 
