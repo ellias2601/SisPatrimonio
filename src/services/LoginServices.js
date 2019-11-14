@@ -17,20 +17,25 @@ export default class LoginServices extends Component {
         let url = '/login/' +  "'" + state.cpf + "'"  + '/' +  "'" + state.senha + "'" ;
 
         //console.log(url);
-        const responseDadosUsuario = await Api.get(url);
+        const responseDadosUsuario = await Api.get(url, {timeout:10})
 
-        //Apresenta no console o JSON obtido como resposta!
-        console.log(responseDadosUsuario.data);
+            .catch(
+
+                function (error) {
+                    Alert.alert("Erro", "Erro na comunicação com a base de dados! Tente novamente ou contacte o suporte!");
+
+        });
+
+        //console.log(responseDadosUsuario.data);
 
         if(responseDadosUsuario.data.length === 0 ) {
+
             Alert.alert('Autenticação', 'Usuário ou Senha Incorreto(s)!');
-            //state.setState({Error: 'Usuário ou Senha Incorreto(s)!'})
-            //let loginTeste = new Login();
-            //loginTeste.loginIncorreto();
 
         } else{
 
             try {
+
                 //armazena o id do usuario para uso posterior na aplicacao
                 await AsyncStorage.setItem('idUsuario', JSON.stringify(responseDadosUsuario.data[0].idUsuario));
 
@@ -39,7 +44,7 @@ export default class LoginServices extends Component {
                 props.navigation.navigate('MenuPrincipal', {nomeUsuario: responseDadosUsuario.data[0].nomeUsuario,})
             }
             catch(error){
-                Alert.alert('Falha no processo de login, entre em contato com o suporte técnico! ID: LOGUSER');
+                Alert.alert('Erro', 'Falha no processo de login, entre em contato com o suporte técnico! ID: LOGUSER');
             }
         }
 
