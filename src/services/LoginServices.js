@@ -16,7 +16,7 @@ export default class LoginServices extends Component {
 
         let url = '/login/' +  "'" + state.cpf + "'"  + '/' +  "'" + state.senha + "'" ;
 
-        console.log(url);
+        //console.log(url);
         const responseDadosUsuario = await Api.get(url);
 
         //Apresenta no console o JSON obtido como resposta!

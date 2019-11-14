@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Api from "./Api";
-import {AsyncStorage} from "react-native";
+import {AsyncStorage, Alert} from "react-native";
 
 export default class CadastroBemServices extends Component {
 
@@ -234,14 +234,14 @@ export default class CadastroBemServices extends Component {
 
                 if (response.status === 200) {
 
-                    alert("Bem salvo com sucesso!");
+                    Alert.alert("Confirmação", "Bem salvo com sucesso!");
 
                 } else {
-                    alert("Erro ao salvar bem! Tente novamente ou contacte o suporte!");
+                    Alert.alert("Erro", "Erro ao salvar bem! Tente novamente ou contacte o suporte!");
                 }
             }
         ).catch(function (error) {
-            alert('Erro na comunicação com a base de dados! Tente novamente ou contacte o suporte!');
+            Alert.alert("Erro", "Erro na comunicação com a base de dados! Tente novamente ou contacte o suporte!");
         });
     }
 

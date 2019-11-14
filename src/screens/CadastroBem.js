@@ -310,7 +310,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -336,7 +336,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -365,7 +365,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-create"} size={30} width={100}  color={"black"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -389,7 +389,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -412,7 +412,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-create"} size={30} width={100}  color={"black"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -435,7 +435,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -466,7 +466,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -491,7 +491,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -525,7 +525,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-create"} size={30} width={100}  color={"black"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -560,7 +560,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -590,7 +590,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -621,7 +621,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -651,7 +651,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-create"} size={30} width={100}  color={"black"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
                     </View>
@@ -687,7 +687,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -717,7 +717,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -747,7 +747,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -776,7 +776,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -803,7 +803,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -825,7 +825,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -853,7 +853,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -875,7 +875,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -897,7 +897,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -918,7 +918,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -938,7 +938,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
@@ -965,7 +965,7 @@ export default class CadastroBem extends Component {
 
                         <View style={styles.iconBorder}>
 
-                            <Ionicons name={"md-checkmark-circle"} size={30} width={100}  color={"green"}/>
+                            <Ionicons name={"ios-help-circle"} size={30} width={100}  color={"#77bdd5"}/>
 
                         </View>
 
