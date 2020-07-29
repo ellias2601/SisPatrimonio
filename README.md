@@ -1,4 +1,4 @@
-# SisPatrimônio - Sistema Para Controle Patrimonial Municipal
+# SisPatrimônio - Aplicação Para Controle Patrimonial Municipal
 
 <p align="center"
   <label>Desenvolvimento de Aplicações para Dispositivos Móveis, IFG - Câmpus Inhumas</Label>
