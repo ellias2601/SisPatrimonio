@@ -194,23 +194,3 @@
 </p>
 
 <br>
-
-<p align="center">
-<label>20 - APP em Desenvolvimento 1</label>
-</p>
-
-<p align="center">
-  <img width="1600" height="900" src="../master/src/assets/printScreensREADME/Bonus1.png">
-</p>
-
-<br>
-
-<p align="center">
-<label>20 - APP em Desenvolvimento 2</label>
-</p>
-
-<p align="center">
-  <img width="1600" height="900" src="../master/src/assets/printScreensREADME/Bonus2.png">
-</p>
-
-<br>
