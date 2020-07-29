@@ -200,7 +200,7 @@
 </p>
 
 <p align="center">
-  <img width="383" height="684" src="../master/src/assets/printScreensREADME/Bonus1.png">
+  <img width="1600" height="900" src="../master/src/assets/printScreensREADME/Bonus1.png">
 </p>
 
 <br>
@@ -210,7 +210,7 @@
 </p>
 
 <p align="center">
-  <img width="383" height="684" src="../master/src/assets/printScreensREADME/Bonus2.png">
+  <img width="1600" height="900" src="../master/src/assets/printScreensREADME/Bonus2.png">
 </p>
 
 <br>
