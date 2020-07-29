@@ -1,0 +1,42 @@
+Ativar API Rest
+
+diretorio: /var/www/html/SisPatrAPI
+
+comando: "node index.js"
+
+acesso via browser: localhost:3013
+
+
+
+Opcional:
+
+verificar portas em utilizacao:
+
+comando: ps
+
+matar processo na porta:
+
+comando: kill -9 pid_do_processo
+
+
+
+Iniciar Aplicacao
+
+comando: react-native start --reset-cache
+
+comando: sudo su
+comando : android avd
+
+Iniciar Dispositivo Virtual Android e depois:
+
+comando: react-native run-android
+
+
+Linkar Novas Dependências
+
+comando: react-native link react-native-gesture-handler
+
+
+Acessar SDK Android
+
+comando: android sdk

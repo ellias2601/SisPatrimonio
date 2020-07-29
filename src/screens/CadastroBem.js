@@ -1030,7 +1030,10 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row', //Alinhamento dos icones de status
-        width: 280,  //Reduz ou aumenta borda do picker para direita!!!!!!!!
+        //para celular
+        //width: 280,  //Reduz ou aumenta borda do picker para direita!!!!!!!!
+        //para emulador
+        width: 290, //Reduz ou aumenta borda do picker para direita!!!!!!!!
         //paddingRight: 60
     },
 
@@ -1053,7 +1056,10 @@ var styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         flexDirection: 'row',
-        width: 280, //Reduz ou aumentar borda do imput para a direita!!!!!!
+        //para celular
+        //width: 280, //Reduz ou aumentar borda do imput para a direita!!!!!!
+        //para emulador
+        width: 290, //Reduz ou aumentar borda do imput para a direita!!!!!!
         paddingRight: 200
     },
 
