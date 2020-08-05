@@ -1,8 +1,5 @@
 # SisPatrimônio - Aplicação Para Controle Patrimonial Municipal
 
-<p align="center"
-  <label>Desenvolvimento de Aplicações para Dispositivos Móveis, IFG - Câmpus Inhumas</Label>
-
 <p align="center">
 <label>01 - Tela de Login</label>
 </p>
